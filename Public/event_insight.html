@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Events</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <!-- Custom fonts for this website-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Plugin styles for this website-->
+    <link href="vendor/rotating-card/rotating-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/fullcalendar/core/main.css" />
+    <link rel="stylesheet" href="vendor/fullcalendar/timegrid/main.css" />
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this website-->
+    <link href="css/utar2share.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container">
+            <img src="images/logo.png" height="45" width="70" alt="UTAR 2SHARE"></a>
+            <span class="navbar-brand js-scroll-trigger">UTAR 2SHARE</span>
+            <button class="navbar-toggler navbar-toggler-right btn btn-link rounded-circle" type="button"
+                data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="post.html">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="event.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="forum.html">Forum</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="usernamebar"></span>
+                            <img class="img-profile rounded-circle" id="userprofilepic">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#qrCodeModal"
+                                onclick="qrcode_GE()">
+                                <i class="fas fa-qrcode fa-sm fa-fw mr-2 text-gray-400"></i>
+                                QR Code
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <!-- End of Topbar -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Begin Page Content -->
+    <section>
+        <div class="container container-lg-fluid">
+            <div class="row">
+                <div class="col-sm-2 col-12 text-center">
+                    <!-- Sidebar -->
+                    <ul class="navbar-nav sidebar accordion navbar-sm-hoz sticky-top">
+
+                        <!-- Nav Item - Events -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event.html">
+                                <i class="far fa-calendar-plus"></i>
+                                <span>Events</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_discover.html">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Discover</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_history.html">
+                                <i class="fas fa-history"></i>
+                                <span>History</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_insight.html">
+                                <i class="fas fa-person-booth"></i>
+                                <span>Insights</span></a>
+                        </li>
+
+                    </ul>
+                    <!-- End of Sidebar -->
+                </div>
+
+                <div class="col-sm-10 col-12">
+                    <div class="card-main shadow mb-4">
+                        <div class="card-header py-3 d-flex bd-highlight align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary bd-highlight">Events Insight</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" id="eventdata_row">
+                            </div> <!-- end row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; UTAR 2SHARE. All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    <a class="scroll-to-top rounded-circle" href="#">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="button" id="SignOut">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal-->
+    <div class="modal fade" id="qrCodeModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My QR Code</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="QRcode_preview" class="container-fluid"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Modal-->
+    <div class="modal" id="actModal" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Activity</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id='activities_calendar'></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Modal-->
+    <div class="modal" id="rptModal" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="" autocomplete="off">
+                        <div id="report_data" class="card-body row">
+                            <div class="col-12 row form-group d-inline-flex align-items-end justify-content-center">
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="eventtitle title text-truncate"></div>
+                                    <div class="eventdetail profession text-truncate"></div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
+                                    <label>Start Date: <small>(required)</small></label>
+                                    <input type="date" id="startcap" class="form-control" required>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12 mt-lg-0 mt-3">
+                                    <label>End Date:<small>(required)</small></label>
+                                    <input type="date" id="endcap" class="form-control" required>
+                                </div>
+                                <div class="col-lg-1 col-md-12 text-right mt-lg-0 mt-3">
+                                    <input type='button' id="datesubmit" class='btn btn-primary btn-wd' value='Display'>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 border chart-area" id="chart-area"><canvas
+                                            id="joinchart"></canvas></div>
+                                    <div class="col-12 row mt-5">
+                                        <div class="col-md-4 col-sm-12 text-md-left text-center">
+                                            <div id="totalpart" class="h2 text-primary pl-md-5 pl-0">0</div>
+                                            <div>Total Participants</div>
+                                        </div>
+                                        <div class="col-md-8 col-sm-12 row text-md-right text-center mt-md-0 mt-3">
+                                            <div class="col-6">
+                                                <div class="pb-2">
+                                                    <span id="womenpart" class="h2 text-primary">0</span>
+                                                    <span class="pl-2">%</span>
+                                                </div>
+                                                <div>Women</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="pb-2">
+                                                    <span id="menpart" class="h2 text-primary">0</span>
+                                                    <span class="pl-2">%</span>
+                                                </div>
+                                                <div>Men</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <div class="row">
+                                    <div class="col-12 border chart-bar" id="chart-bar">
+                                        <canvas id="totalchart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" id="gpdf" onclick="generatePDF()">Generate
+                        Participants Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal-->
+    <div class="modal" id="feedbackModal" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body row">
+                        <div class="col-12 row form-group d-inline-flex align-items-end justify-content-center">
+                            <div class="col-lg-5 col-md-12">
+                                <div class="eventtitle title text-truncate"></div>
+                                <div class="eventdetail profession text-truncate"></div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-12 text-md-left text-center">
+                                <div id="totalfb" class="h2 text-primary pl-md-5 pl-0">0</div>
+                                <div>Total Feedback</div>
+                            </div>
+                            <div class="col-lg-4 col-md-8 col-sm-12 row text-md-right text-center mt-md-0 mt-3">
+                                <div class="col-6">
+                                    <div class="pb-2">
+                                        <span id="ratelike" class="h2 text-primary">0</span>
+                                        <span class="pl-2">%</span>
+                                    </div>
+                                    <div>Like</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="pb-2">
+                                        <span id="ratedislike" class="h2 text-primary">0</span>
+                                        <span class="pl-2">%</span>
+                                    </div>
+                                    <div>Dislike</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="feedback_table" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>Comment</th>
+                                            <th>Rate</th>
+                                            <th>Submit Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- Js / Jquery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Firebase login-->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase.js"></script>
+    <script src="js/AccountFirebase.js"></script>
+
+    <!-- jQuery Pull to Refresh plugin -->
+    <script src='vendor/pulltorefresh/jquery.p2r.min.js' type='text/javascript' defer></script>
+
+    <!-- Chart -->
+    <script src="vendor/chart/Chart.min.js"></script>
+
+    <!-- JSPDF-->
+    <script src="vendor/jsPDF/jspdf.min.js"></script>
+    <script src="vendor/jsPDF/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- FullCalendar plugin -->
+    <script src="vendor/fullcalendar/core/main.js"></script>
+    <script src="vendor/fullcalendar/daygrid/main.js"></script>
+    <script src="vendor/fullcalendar/timegrid/main.js"></script>
+
+    <!-- QR Code Generator -->
+    <script src="vendor/QRCode/jquery-qrcode.min.js"></script>
+
+    <!-- Datetable plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Custome JS -->
+    <script src="js/utar2share.js"></script>
+    <script src="js/bootstrap-dialog.min.js"></script>
+
+    <script>
+
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+        var myLineChart;
+        var ctx = document.getElementById("joinchart");
+        var myBarChart;
+        var barctx = document.getElementById("totalchart");
+        var reportdata = [];
+        var datagender;
+        var act_calendar;
+        var calendarE2 = document.getElementById('activities_calendar');
+        var table = $('#feedback_table').DataTable();
+
+        $(function () {//onload
+
+            $("#eventdata_row").html('<div class="col-12" id="norecord"><div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">Please Wait, Loading...</div></div></div>');
+
+            initApp().then(function (user) {
+                get_events(user);
+            });
+
+            $('#datesubmit').on('click', function () {
+                var id = $("#datesubmit").data("id");
+                var start = moment($("#startcap").val());
+                var end = moment($("#endcap").val());
+                var diff = end.diff(start, 'days');
+                if (!$("#startcap").val() || !$("#endcap").val() || !(diff < 7 && diff >= 0)) {
+                    $.dialog.alert("Date input", "Please enter date range within 7 days.");
+                } else {
+                    retrievedata(id, start, end);
+                }
+            });
+        });
+
+        function get_events(user) {
+            var displaydate = new Date();
+            displaydate.setDate(displaydate.getDate() + 1);
+
+            var db = firebase.firestore().collection("event");
+            db = db.where("status", "==", 1);
+            db = db.where("creatorid", "==", user.uid);
+            db = db.where("end", "<=", displaydate);
+            db = db.orderBy("end", "desc");
+            db = db.orderBy("start", "desc");
+            db.onSnapshot(function (snapshot) {
+                if (!snapshot.empty) {
+                    if ($("#norecord")) $("#norecord").remove();
+                    snapshot.docChanges().forEach(function (change) {
+                        if (change.type !== "removed") {
+                            var wdb = firebase.firestore().collection("weather");
+                            wdb = wdb.where("location", "==", change.doc.data().city);
+                            wdb = wdb.where("date", "==", moment.unix(change.doc.data().start.seconds).format("YYYY-MM-DD"));
+                            wdb.onSnapshot(function (wsnapshot) {
+                                var wcode = 44;
+                                if (!wsnapshot.empty) {
+                                    wsnapshot.docChanges().forEach(function (thisdoc) {
+                                        wcode = thisdoc.doc.data().code;
+                                    });
+                                }
+                                get_eventData(change, wcode);
+                                if ($('#eventdata_row').is(':empty')) $("#eventdata_row").html('<div class="col-12" id="norecord"><div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div></div>');
+                            });
+                        } else {
+                            $("#" + change.doc.id).remove();
+                        }
+                    });
+                } else {
+                    $("#norecord").html('<div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                }
+            });
+        }
+
+        function get_eventData(change, wcode) {
+            var data = "";
+            var photourl = change.doc.data().photourl;
+            var event_time = moment(change.doc.data().starttime, "HH:mm");
+            var eventdate = moment.unix(change.doc.data().start.seconds);
+            var buttonevent = "";
+            buttonevent += '<a href="#" class="btn btn-primary btn-circle mr-3" title="Show Activity" onclick="showactivity(\'' + change.doc.id + '\',' + moment.unix(change.doc.data().start.seconds) + ',' + moment.unix(change.doc.data().end.seconds) + ')"><i class="far fa-list-alt"></i></a>';
+            buttonevent += '<a href="#" class="btn btn-warning btn-circle mr-3" title="Show Report" onclick="showreport(\'' + change.doc.id + '\')"><i class="far fa-chart-bar"></i></a>';
+            buttonevent += '<a href="#" class="btn btn-primary btn-circle" title="Show Feedback" onclick="showfeedback(\'' + change.doc.id + '\')"><i class="far fa-comment-alt"></i></a>';
+            if (quotaexceed) photourl = "images/bg-sample.jpg";
+
+            if ($("#" + change.doc.id).length == 0) {
+                data += '<div class="col-lg-6 col-md-12" id="' + change.doc.id + '"><div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div></div>';
+                $("#eventdata_row").append(data);
+            } else if (change.type === "modified") {
+                var id = "#" + change.doc.id;
+                data += '<div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div>';
+                $(id).html(data);
+            }
+        }
+
+        function showactivity(id, start, end) {
+            if (act_calendar) act_calendar.destroy();
+            $("#actModal").fadeIn('slow').modal("show");
+            var eventid = id;
+            var dur = ((((end - start) / 1000) / 60) / 60) / 24;
+            act_calendar = new FullCalendar.Calendar(calendarE2, {
+                plugins: ['timeGrid'],
+                defaultView: 'timeGridDay',
+                header: {
+                    left: '',
+                    center: 'title',
+                    right: ''
+                },
+                views: {
+                    timeGridDay: {
+                        type: 'timeGrid',
+                        duration: { days: dur }
+                    }
+                },
+                defaultDate: moment(start).format("YYYY-MM-DD"),
+            });
+            act_calendar.render();
+
+            firebase.firestore().collection("event_activity").where("eventid", "==", eventid).get().then(function (activitycol) {
+                activitycol.forEach(function (activitydoc) {
+                    var obj = new Object();
+                    obj.id = activitydoc.id;
+                    obj.title = activitydoc.data().title;
+                    obj.start = moment.unix(activitydoc.data().start.seconds).format("YYYY-MM-DD HH:mm:ss");
+                    obj.end = moment.unix(activitydoc.data().end.seconds).format("YYYY-MM-DD HH:mm:ss");
+                    obj.allDay = false;
+                    obj.editable = false;
+                    addevent_timegrid(obj);
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function addevent_timegrid(obj) {
+            act_calendar.addEventSource([
+                {
+                    id: obj.id,
+                    title: obj.title,
+                    start: obj.start,
+                    end: obj.end,
+                    editable: obj.editable != null ? obj.editable : false,
+                    allDay: obj.allDay != null ? obj.allDay : true
+                }
+            ]);
+        }
+
+        function showreport(id) {
+
+            $("#rptModal").fadeIn('slow').modal("show");
+            $("#datesubmit").data("id", id);
+
+            retrievedata(id, "", "");
+
+        }
+
+        function retrievedata(id, start, end) {
+            $("#gpdf").attr("disabled", "disabled");
+            $("#totalpart").html(0);
+            $("#menpart").html(0);
+            $("#womenpart").html(0);
+            firebase.firestore().collection("event").doc(id).get().then(function (eventdoc) {
+
+                var startdate = moment.unix(eventdoc.data().start.seconds);
+                var enddate = moment.unix(eventdoc.data().end.seconds);
+
+                if (start == "" || end == "") {
+                    var startweek = moment.unix(eventdoc.data().end.seconds).startOf('week');
+                    var endweek = moment.unix(eventdoc.data().end.seconds).endOf('week');
+                    $("#startcap").val(startweek.format("YYYY-MM-DD"));
+                    $("#endcap").val(endweek.format("YYYY-MM-DD"));
+                } else {
+                    var startweek = start;
+                    var endweek = end;
+                }
+
+                var datearr = [];
+                var partarr = [];
+                var datalinearr = [];
+                datagender = [0, 0];
+                var dataage = {};
+
+                $(".eventtitle").html(eventdoc.data().title);
+                $(".eventdetail").html(moment.unix(eventdoc.data().end.seconds).format("YYYY-MM-DD") + " - " + eventdoc.data().city);
+                $("#gpdf").data("name", eventdoc.data().title);
+
+                var obj = new Object();
+
+                for (var d = moment(startweek); d <= endweek; d.add(1, "days")) {
+                    datearr.push(d.format("YYYY-MM-DD"));
+                    partarr.push({
+                        'date': d.format("YYYY-MM-DD"),
+                        'total': 0
+                    });
+                }
+
+                firebase.firestore().collection("event_participants")
+                    .where("eid", "==", id)
+                    .where("status", ">=", 1)
+                    //.where("updateDateTime", ">=", startweek.toDate())
+                    //.where("updateDateTime", "<=", endweek.toDate())
+                    .get().then(function (partcol) {
+
+                        partdetail(partcol, startweek, endweek, enddate, partarr, dataage).then(function ([partarr, datagender]) {
+
+                            $("#gpdf").removeAttr("disabled");
+
+                            var total_part = reportdata.length;
+                            var total_menpart = ((datagender[0] / total_part) * 100);
+                            var total_womenpart = ((datagender[1] / total_part) * 100);
+                            if (total_menpart % 1 != 0) total_menpart = total_menpart.toFixed(1);
+                            if (total_womenpart % 1 != 0) total_womenpart = total_womenpart.toFixed(1);
+                            $("#totalpart").html(total_part);
+                            $("#menpart").html(total_menpart);
+                            $("#womenpart").html(total_womenpart);
+
+                            for (var i = 0; i < partarr.length; i++) {
+                                datalinearr[i] = partarr[i].total;
+                            }
+
+                            if (myLineChart) {
+                                $("#joinchart").remove();
+                                $("#chart-area").append('<canvas id="joinchart"><canvas>');
+                                ctx = document.getElementById("joinchart");
+                            }
+                            myLineChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: datearr,
+                                    datasets: [{
+                                        label: "Participants",
+                                        lineTension: 0.3,
+                                        backgroundColor: "rgba(78, 115, 223, 0.05)",
+                                        borderColor: "rgba(78, 115, 223, 1)",
+                                        pointRadius: 3,
+                                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                                        pointBorderColor: "rgba(78, 115, 223, 1)",
+                                        pointHoverRadius: 3,
+                                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                                        pointHitRadius: 10,
+                                        pointBorderWidth: 2,
+                                        data: datalinearr,
+                                    }],
+                                },
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: 'Total Participants between ' + startweek.format("M-D") + ' and ' + endweek.format("M-D")
+                                    },
+                                    maintainAspectRatio: false,
+                                    layout: {
+                                        padding: {
+                                            left: 10,
+                                            right: 25,
+                                            top: 25,
+                                            bottom: 0
+                                        }
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            time: {
+                                                unit: 'date'
+                                            },
+                                            gridLines: {
+                                                display: false,
+                                                drawBorder: false
+                                            },
+                                            ticks: {
+                                                maxTicksLimit: 7
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            ticks: {
+                                                maxTicksLimit: 8,
+                                                padding: 5,
+                                                beginAtZero: true,
+                                                precision: 0,
+                                                // Include a dollar sign in the ticks
+                                                callback: function (value, index, values) {
+                                                    //return '' + number_format(value);
+                                                    return value;
+                                                }
+                                            },
+                                            gridLines: {
+                                                color: "rgb(234, 236, 244)",
+                                                zeroLineColor: "rgb(234, 236, 244)",
+                                                drawBorder: false,
+                                                borderDash: [2],
+                                                zeroLineBorderDash: [2]
+                                            }
+                                        }],
+                                    },
+                                    legend: {
+                                        display: false
+                                    },
+                                    tooltips: {
+                                        backgroundColor: "rgb(255,255,255)",
+                                        bodyFontColor: "#858796",
+                                        titleMarginBottom: 10,
+                                        titleFontColor: '#6e707e',
+                                        titleFontSize: 14,
+                                        borderColor: '#dddfeb',
+                                        borderWidth: 1,
+                                        xPadding: 15,
+                                        yPadding: 15,
+                                        displayColors: false,
+                                        intersect: false,
+                                        mode: 'index',
+                                        caretPadding: 10,
+                                        callbacks: {
+                                            label: function (tooltipItem, chart) {
+                                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                                //return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+                                                return datasetLabel + ': ' + tooltipItem.yLabel;
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+
+                            var dataagelabel = [];
+                            var dataagemen = [];
+                            var dataagewomen = [];
+                            for (age in dataage) {
+                                dataagelabel.push("Age " + age);
+                                dataagemen.push(dataage[age][0]);
+                                dataagewomen.push(dataage[age][1]);
+                            }
+
+                            if (myBarChart) {
+                                $("#totalchart").remove();
+                                $("#chart-bar").append('<canvas id="totalchart"><canvas>');
+                                barctx = document.getElementById("totalchart");
+                            }
+                            myBarChart = new Chart(barctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: dataagelabel,
+                                    datasets: [{
+                                        label: "Men",
+                                        backgroundColor: "#4e73df",
+                                        hoverBackgroundColor: "#2e59d9",
+                                        borderColor: "#4e73df",
+                                        data: dataagemen,
+                                    }, {
+                                        label: "Women",
+                                        backgroundColor: "#DF4E4E",
+                                        hoverBackgroundColor: "#DA2E2E",
+                                        borderColor: "#DF4E4E",
+                                        data: dataagewomen,
+                                    }]
+                                },
+                                options: {
+                                    title: {
+                                        display: true,
+                                        text: 'Age Group'
+                                    },
+                                    maintainAspectRatio: false,
+                                    layout: {
+                                        padding: {
+                                            left: 10,
+                                            right: 25,
+                                            top: 25,
+                                            bottom: 0
+                                        }
+                                    },
+                                    scales: {
+                                        xAxes: [{
+                                            gridLines: {
+                                                display: false,
+                                                drawBorder: false
+                                            },
+                                            ticks: {
+                                                maxTicksLimit: 7
+                                            },
+                                            maxBarThickness: 25,
+                                        }],
+                                        yAxes: [{
+                                            ticks: {
+                                                min: 0,
+                                                max: total_part,
+                                                maxTicksLimit: 8,
+                                                padding: 10,
+                                                precision: 0,
+                                                // Include a dollar sign in the ticks
+                                                callback: function (value, index, values) {
+                                                    //return '$' + number_format(value);
+                                                    return value;
+                                                }
+                                            },
+                                            gridLines: {
+                                                color: "rgb(234, 236, 244)",
+                                                zeroLineColor: "rgb(234, 236, 244)",
+                                                //drawBorder: false,
+                                                borderDash: [2],
+                                                zeroLineBorderDash: [2]
+                                            }
+                                        }]
+                                    },
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    tooltips: {
+                                        titleMarginBottom: 10,
+                                        titleFontColor: '#6e707e',
+                                        titleFontSize: 14,
+                                        backgroundColor: "rgb(255,255,255)",
+                                        bodyFontColor: "#858796",
+                                        borderColor: '#dddfeb',
+                                        borderWidth: 1,
+                                        xPadding: 15,
+                                        yPadding: 15,
+                                        displayColors: false,
+                                        caretPadding: 10,
+                                        callbacks: {
+                                            label: function (tooltipItem, chart) {
+                                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                                return datasetLabel + ': ' + tooltipItem.yLabel;
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                    });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function partdetail(partcol, startweek, endweek, enddate, partarr, dataage) {
+            return new Promise((resolve, reject) => {
+                reportdata = [];
+                if (!partcol.empty) {
+                    var no = 0;
+                    partcol.forEach(function (partdoc) {
+                        var partdate = moment.unix(partdoc.data().updateDateTime.seconds);
+                        if (partdate >= startweek && partdate <= endweek) {
+                            if (partdate <= enddate) {
+                                var pushdate = getObjects(partarr, "date", partdate.format("YYYY-MM-DD"));
+                                if (pushdate) {
+                                    pushdate[0].total++;
+                                }
+                            }
+                        }
+                        if (partdoc.data().status == 2) {
+                            firebase.firestore().collection("users").doc(partdoc.data().uid).get().then(function (udoc) {
+                                var age = moment().diff(moment(udoc.data().dob), "years");
+                                if (!dataage[age]) {
+                                    dataage[age] = [0, 0];
+                                }
+                                if (udoc.data().gender == "M") {
+                                    datagender[0]++;
+                                    dataage[age][0]++;
+                                } else {
+                                    datagender[1]++;
+                                    dataage[age][1]++;
+                                }
+                                no++;
+                                reportdata.push([no, udoc.data().displayName, age, udoc.data().gender, udoc.data().email, udoc.data().phone, udoc.data().faculty, udoc.data().intakesem + " " + udoc.data().intakeyear])
+                                if (no == partcol.size) {
+                                    resolve([partarr, datagender, dataage]);
+                                }
+                            });
+                        } else if (++no == partcol.size) {
+                            resolve([partarr, datagender, dataage]);
+                        }
+                    });
+                } else {
+                    resolve([partarr, datagender, dataage]);
+                }
+            });
+        }
+
+        function getObjects(obj, key, val) {
+            var objects = [];
+            for (var i in obj) {
+                if (!obj.hasOwnProperty(i)) continue;
+                if (typeof obj[i] == 'object') {
+                    objects = objects.concat(getObjects(obj[i], key, val));
+                } else if (i == key && obj[key] == val) {
+                    objects.push(obj);
+                }
+            }
+            return objects;
+        }
+
+        function generatePDF() {
+            var name = $("#gpdf").data("name");
+            var pdfdoc = new jsPDF();
+            var totalPagesExp = "{total_pages_count_string}";
+
+            pdfdoc.autoTable({
+                head: [
+                    ['No', 'Name', 'Age', 'Gender', 'Email', 'Phone', 'Faculty', 'Intake']
+                ],
+                body: reportdata,
+                didDrawPage: function (data) {
+                    // Header
+                    pdfdoc.setFontSize(20);
+                    pdfdoc.setTextColor(40);
+                    pdfdoc.setFontStyle('normal');
+                    pdfdoc.text(name + " Participants Report", data.settings.margin.left, 22);
+
+                    //pdfdoc.setFontSize(15);
+                    //pdfdoc.text("Total participants : " + reportdata.length, data.settings.margin.left, 32);
+                    //pdfdoc.text("Female : " + datagender[1], data.settings.margin.left + 100, 32);
+                    //pdfdoc.text("Male : " + datagender[0], data.settings.margin.left + 150, 32);
+
+                    // Footer
+                    var str = "Page " + pdfdoc.internal.getNumberOfPages()
+                    if (typeof pdfdoc.putTotalPages === 'function') {
+                        str = str + " of " + totalPagesExp;
+                    }
+                    pdfdoc.setFontSize(10);
+
+                    var pageSize = pdfdoc.internal.pageSize;
+                    var pageHeight = pageSize.getHeight();
+                    var pageWidth = pageSize.getWidth();
+                    pdfdoc.text(str, pageWidth - 40, pageHeight - 10);
+                },
+                margin: { top: 30 }
+            });
+
+
+            if (typeof pdfdoc.putTotalPages === 'function') {
+                pdfdoc.putTotalPages(totalPagesExp);
+            }
+
+            pdfdoc.save(name + ' Participants Report.pdf');
+        }
+
+        function showfeedback(id) {
+            $("#feedbackModal").fadeIn('slow').modal("show");
+            $("#totalfb").html(0);
+            $("#ratelike").html(0);
+            $("#ratedislike").html(0);
+            if (table) table.clear().draw();
+            table;
+            firebase.firestore().collection("event").doc(id).get().then(function (eventdoc) {
+
+                var total_fb = 0;
+                var datarate = [0, 0];
+
+                $(".eventtitle").html(eventdoc.data().title);
+                $(".eventdetail").html(moment.unix(eventdoc.data().end.seconds).format("YYYY-MM-DD") + " - " + eventdoc.data().city);
+
+                firebase.firestore().collection("event_participants")
+                    .where("eid", "==", id)
+                    .where("status", "==", 2)
+                    .where("rate", ">", 0)
+                    .orderBy("rate", "asc")
+                    .orderBy("updateDateTime", "desc")
+                    .get().then(function (partcol) {
+                        if (!partcol.empty) {
+                            partcol.forEach(function (partdoc) {
+                                firebase.firestore().collection("users").doc(partdoc.data().uid).get().then(function (udoc) {
+                                    if (partdoc.data().rate == 1) {
+                                        datarate[0]++;
+                                    } else {
+                                        datarate[1]++;
+                                    }
+                                    total_fb++;
+
+                                    table.row.add([
+                                        total_fb,
+                                        udoc.data().displayName,
+                                        partdoc.data().feedback,
+                                        partdoc.data().rate == 1 ? "Like" : "Dislike",
+                                        moment.unix(partdoc.data().updateDateTime.seconds).format("YYYY-MM-DD HH:mm")
+                                    ]).node();
+
+                                    if (total_fb == partcol.size) {
+
+                                        var total_like = ((datarate[0] / total_fb) * 100);
+                                        var total_dislike = ((datarate[1] / total_fb) * 100);
+                                        if (total_like % 1 != 0) total_like = total_like.toFixed(1);
+                                        if (total_dislike % 1 != 0) total_dislike = total_dislike.toFixed(1);
+
+                                        $("#totalfb").html(total_fb);
+                                        $("#ratelike").html(total_like);
+                                        $("#ratedislike").html(total_like);
+                                        table.draw();
+                                    }
+                                });
+                            });
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

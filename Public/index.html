@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>Utar 2Share</title>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/utar2share.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-primary">
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <img src="images/logo.png" height="148" width="212" alt="UTAR 2SHARE"></a>
+                    <h1 class="h4 text-gray-900 mb-4">Welcome Back, Utarian!</h1>
+                  </div>
+                  <div class="text-warning mb-3" id="errorMessage"></div>
+                  <form class="user">
+                    <a href="#" class="btn btn-facebook btn-user btn-block login-button g-login" id="g-login">
+                      <i class="fab fa-google fa-fw"></i> Login with Utar Mail
+                    </a>
+                  </form>
+                  <hr>
+                  <div class="text-left">
+                    On password related enquiry, please email to
+                    <a class="text-decoration-none" href="mailto:info@utar.edu.my">info@utar.edu.my</a>
+                    with necessary details (e.g. full name, some descriptions on the case)
+                    for further assistance.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Firebase login-->
+  <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase.js"></script>
+  <script src="js/AccountFirebase.js"></script>
+  <script src="js/auth.js"></script>
+
+  <script>
+
+
+    initApp();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.setCustomParameters({
+      hd: "1utar.my"
+    });
+
+
+    $(document).ready(function () {
+
+      $("#errorMessage").not(':visible');
+
+      $('#g-login').click(function () {
+
+        $("#errorMessage").html("");
+        $("#errorMessage").not(':visible');
+
+        firebase.auth().signInWithPopup(provider).then(result => {
+          validAccountCheck().then((validAccount) => {  /// Check if user has a valid email account
+            checkaccount(validAccount);
+          });
+        }).catch(function (error) {
+          $("#errorMessage").show();
+          $("#errorMessage").html(error.message);
+        });
+      });
+    });
+
+    function initApp() {
+      // Listening for auth state changes.
+      // [START authstatelistener]
+      firebase.auth().onAuthStateChanged(result => {
+        var user = firebase.auth().currentUser;
+        if (user) {
+          $("#errorMessage").html("Hi , "+user.displayName+". <br/> Verifying account...");
+          validAccountCheck().then((validAccount) => {  /// Check if user has a valid email account
+            checkaccount(validAccount);
+          });
+        }
+      });
+      // [END authstatelistener]
+    }
+
+    function checkaccount(validAccount) {
+      if (validAccount) {
+        window.location.href = "profile.html";
+      }
+      else {
+        /// Not valid account
+        $("#errorMessage").show();
+        $("#errorMessage").html("Invalid Account");
+        firebase.auth().signOut();
+      };
+    }
+  </script>
+
+</body>
+
+</html>

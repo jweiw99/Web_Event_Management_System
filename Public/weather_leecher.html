@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Weather data leecher</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+    <!-- SCRIPTS -->
+    <!-- Js / Jquery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9/crypto-js.js"></script>
+
+    <!-- Firebase login-->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase.js"></script>
+    <script src="js/AccountFirebase.js"></script>
+
+    <script>
+
+        // Weather API
+        var url = 'https://weather-ydn-yql.media.yahoo.com/forecastrss';
+        var method = 'GET';
+        var app_id = 'xtZe8334';
+        var consumer_key = 'dj0yJmk9aU9Gak1nYnNZcWhxJmQ9WVdrOWVIUmFaVGd6TXpRbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTUz';
+        var consumer_secret = '16359e3b6d6e33d352dcf2b90946b488ede939fd';
+        var concat = '&';
+        var query = [{ 'woeid': '1154706', 'format': 'json' }, { 'woeid': '91739433', 'format': 'json' }];
+
+
+        for (var i = 0; i < query.length; i++) {
+
+            var oauth = {
+                'oauth_consumer_key': consumer_key,
+                'oauth_nonce': Math.random().toString(36).substring(2),
+                'oauth_signature_method': 'HMAC-SHA1',
+                'oauth_timestamp': parseInt(new Date().getTime() / 1000).toString(),
+                'oauth_version': '1.0'
+            };
+
+            var merged = {};
+            $.extend(merged, query[i], oauth);
+            // Note the sorting here is required
+            var merged_arr = Object.keys(merged).sort().map(function (k) {
+                return [k + '=' + encodeURIComponent(merged[k])];
+            });
+            var signature_base_str = method
+                + concat + encodeURIComponent(url)
+                + concat + encodeURIComponent(merged_arr.join(concat));
+
+            var composite_key = encodeURIComponent(consumer_secret) + concat;
+            var hash = CryptoJS.HmacSHA1(signature_base_str, composite_key);
+            var signature = hash.toString(CryptoJS.enc.Base64);
+
+            oauth['oauth_signature'] = signature;
+            var auth_header = 'OAuth ' + Object.keys(oauth).map(function (k) {
+                return [k + '="' + oauth[k] + '"'];
+            }).join(',');
+
+            $.ajax({
+                url: url + '?' + $.param(query[i]),
+                headers: {
+                    'Authorization': auth_header,
+                    'X-Yahoo-App-Id': app_id
+                },
+                method: 'GET',
+                success: function (data) {
+                    console.log(data);
+                    weather_fb(data);
+                }
+            });
+        }
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+
+        function weather_fb(data) {
+            for(var i = 0; i < data.forecasts.length; i++){
+                var obj = new Object();
+                obj.code = data.forecasts[i].code;
+                obj.location = data.location.city=='Sungai Long Golf & Century Club'?'Sungai Long':data.location.city;
+                obj.date = formatDate(data.forecasts[i].date*1000);
+                obj.day = data.forecasts[i].day;
+                obj.w_day = data.forecasts[i].text;
+
+                insert_weather(obj);
+            }
+        }
+
+        function insert_weather(obj){
+            var docRef = firebase.firestore().collection("weather");
+            var query = docRef.where("date", "==", obj.date);
+            query = query.where("location", "==", obj.location);
+            query.get().then(function (thisDoc) {
+                if (!thisDoc.empty) {
+                    $('body').append("<div>"+obj.location+" - "+obj.w_day +" - " +obj.date+" Updated</div>");
+                    docRef.doc(thisDoc.docs[0].id).update(obj);
+                }
+                else {
+                    $('body').append("<div>"+obj.location+" - "+obj.w_day +" - " +obj.date+" Inserted</div>");
+                    docRef.add(obj);
+                }
+            }).catch(function (error) {
+                console.log(error.message);
+            });
+        }
+    </script>
+</body>
+
+</html>

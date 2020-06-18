@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Posts</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/post.css">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/meteor-emoji@0.1.7/dist/meteorEmoji.min.js"></script>
+</head>
+<body>
+	<section id="left">
+		<!--<img id="logo" src="images/logo.png">-->
+		<div id="functions">
+			<div id="filter-box">
+				<font size="+3">Select which type of post to show here : </font>
+				<br>
+				<br>
+				<label><input type="checkbox" value="question"><font size = "+3" >Question</font></label>
+				<br>
+				<label><input type="checkbox" value="sharing"><font size = "+3">Sharing</font></label>
+				<br>
+				<label><input type="checkbox" value="review"><font size = "+3">Review</font></label>
+			
+			</div>
+		</div>
+	</section>
+	<section id="right">
+		<div id="menu-bar">
+			<form id="post-form">
+				<div>
+					<img class="profile-img"> &nbsp; &nbsp; &nbsp;
+					<textarea data-meteor-emoji="true" placeholder="Post something..." name="post-content"></textarea>
+					<input type="submit" value="Post">
+				</div>
+				<br>
+			</form>
+			<div>
+				Select the type of post that you are posting : 
+				<br>
+				<label><input type="radio" name="type" value="question">Question</label>
+				<br>
+				<label><input type="radio" name="type" value="sharing">Sharing</label>
+				<br>
+				<label><input type="radio" name="type" value="review">Review</label>
+				<br>
+			</div>
+		</div>
+		<div id="posts-box">
+		</div>
+	</section>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+	<script type="text/javascript" src="js/post.js"></script>
+</body>
+</html>

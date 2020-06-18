@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Events</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <!-- Custom fonts for this website-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Plugin styles for this website-->
+    <link href="vendor/wizard/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+    <link href="vendor/rotating-card/rotating-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/fullcalendar/core/main.css" />
+    <link rel="stylesheet" href="vendor/fullcalendar/daygrid/main.css" />
+    <link rel="stylesheet" href="vendor/fullcalendar/timegrid/main.css" />
+    <link rel="stylesheet" href="vendor/OrgChart/css/jquery.orgchart.min.css">
+    <link rel="stylesheet" href="vendor/OrgChart/css/style.css">
+
+    <!-- Custom styles for this website-->
+    <link href="css/utar2share.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container">
+            <img src="images/logo.png" height="45" width="70" alt="UTAR 2SHARE"></a>
+            <span class="navbar-brand js-scroll-trigger">UTAR 2SHARE</span>
+            <button class="navbar-toggler navbar-toggler-right btn btn-link rounded-circle" type="button"
+                data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="post.html">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="event.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="forum.html">Forum</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="usernamebar"></span>
+                            <img class="img-profile rounded-circle" id="userprofilepic">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#qrCodeModal"
+                                onclick="qrcode_GE()">
+                                <i class="fas fa-qrcode fa-sm fa-fw mr-2 text-gray-400"></i>
+                                QR Code
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- End of Topbar -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Begin Page Content -->
+    <section>
+        <div class="container container-lg-fluid">
+            <div class="row">
+                <div class="col-sm-2 col-12 text-center">
+                    <!-- Sidebar -->
+                    <ul class="navbar-nav sidebar accordion navbar-sm-hoz sticky-top">
+
+                        <!-- Nav Item - Events -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event.html">
+                                <i class="far fa-calendar-plus"></i>
+                                <span>Events</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_discover.html">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Discover</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_history.html">
+                                <i class="fas fa-history"></i>
+                                <span>History</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_insight.html">
+                                <i class="fas fa-person-booth"></i>
+                                <span>Insights</span></a>
+                        </li>
+
+                    </ul>
+                    <!-- End of Sidebar -->
+                </div>
+
+                <div class="col-sm-10 col-12">
+                    <div class="card-main shadow mb-4">
+                        <div class="card-header py-3 d-flex bd-highlight align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary bd-highlight">Upcoming Events</h6>
+                            <a href="#" class="btn btn-primary btn-icon-split ml-auto bd-highlight" data-toggle="modal"
+                                data-target="#wizardModal" onclick="createEvent_title()">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                                <span class="text">Create Events</span>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" id="eventdata_row">
+                            </div> <!-- end row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; UTAR 2SHARE. All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    <a class="scroll-to-top rounded-circle" href="#">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="button" id="SignOut">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- wizard Modal-->
+    <div class="modal fade" id="wizardModal" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--      Wizard container        -->
+                    <div class="wizard-container">
+                        <div class="card-wiz wizard-card" data-color="azure" id="wizardProfile">
+                            <div class="wizard-header text-center">
+                                <h3 class="wizard-title" id="eventmodal_title">Create Event</h3>
+                                <p class="category">This information will let us know more about your event.</p>
+                                <input type="hidden" name="eventmethod" id="eventmethod" value="" />
+                            </div>
+
+                            <div class="wizard-navigation">
+                                <div class="progress-with-circle">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1"
+                                        aria-valuemax="3" style="width: 21%;"></div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#about" class="card-link" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </div>
+                                            About
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#date" class="card-link" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="fas fa-cloud-sun"></i>
+                                            </div>
+                                            Date
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#activities" class="card-link" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="far fa-list-alt"></i>
+                                            </div>
+                                            Activities
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#members" class="card-link" data-toggle="tab">
+                                            <div class="icon-circle">
+                                                <i class="fas fa-users"></i>
+                                            </div>
+                                            Members
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane" id="about">
+                                    <form action="" method="" autocomplete="off">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="picture-container">
+                                                    <div class="picture">
+                                                        <img src="images/default-event.jpg" class="picture-src"
+                                                            id="wizardPicturePreview" title="" />
+                                                        <input type="file" name="eventpic" class="form-control"
+                                                            id="eventpic">
+                                                    </div>
+                                                    <h6>Choose Picture <small>(required)</small></h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Event Name <small>(required)</small></label>
+                                                    <input name="eventname" id="eventname" type="text"
+                                                        class="form-control" placeholder="Add a short, clear name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Time <small>(required)</small></label>
+                                                    <input name="eventtime" id="eventtime" type="time"
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6 col-12">
+                                                <div class="form-group">
+                                                    <label>Location <small>(required)</small></label>
+                                                    <button
+                                                        class="btn btn-fill btn-info btn-wd dropdown-toggle form-control"
+                                                        type="button" id="weatherlocation" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                        Select Location of Weather Forecast
+                                                    </button>
+                                                    <div class="dropdown-menu animated--fade-in"
+                                                        aria-labelledby="weatherlocation" x-placement="bottom-start"
+                                                        style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="retrieve_weather('Kampar')">Kampar</a>
+                                                        <a class="dropdown-item" href="#"
+                                                            onclick="retrieve_weather('Sungai Long')">Sungai Long</a>
+                                                    </div>
+                                                    <input type="hidden" name="eventcity" id="eventcity" value="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Venue <small>(required)</small></label>
+                                                    <input name="location" id="eventlocation" type="text"
+                                                        class="form-control" placeholder="Include a place or address">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Description <small>(required)</small></label>
+                                                    <textarea name="desc" id="eventdesc" class="form-control" rows="4"
+                                                        placeholder="Tell people what your event is about"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="date">
+                                    <form action="" method="" autocomplete="off">
+                                        <div class="row mt-3">
+                                            <div class="col-lg-6 col-md-12">
+                                                <h5 class="info-text float-lg-left"> Please select your event date time
+                                                    <small>(required)</small></h5>
+                                            </div>
+                                            <div class="col-12">
+                                                <div id='calendar'></div>
+                                                <input type="hidden" name="eventcreated" id="eventcreated" value="" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="activities">
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <h5 class="info-text"> Please enter activity of your event
+                                                <small>(optional)</small>
+                                            </h5>
+                                        </div>
+                                        <div class="col-12">
+                                            <div id='activities_calendar'></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="members">
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                            <h5 class="info-text"> Invite your team members <small>(optional)</small>
+                                            </h5>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div id="chart-container"></div>
+                                                </div>
+                                                <div class="col-12 mt-4 mb-4">
+                                                    <div id="edit-panel">
+                                                        <form action="" method="" autocomplete="off">
+                                                            <div class="row">
+                                                                <div class="col-lg-4 col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>Selected node:</label>
+                                                                        <input type="text" id="selected-node"
+                                                                            class="form-control" placeholder="Node Name"
+                                                                            disabled>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>New node (Name):</label>
+                                                                        <input type="text" list="namelist"
+                                                                            id="searchname"
+                                                                            class="form-control new-node"
+                                                                            placeholder="Email address">
+                                                                        <datalist id="namelist">
+                                                                        </datalist>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label>New node (Title):</label>
+                                                                        <input type="text" list="rolelist" id="rolename"
+                                                                            class="form-control new-node"
+                                                                            placeholder="Title">
+                                                                        <datalist id="rolelist">
+                                                                            <option value="Chairperson"></option>
+                                                                            <option value="Vice Chairperson"></option>
+                                                                            <option value="Program Manager"></option>
+                                                                            <option value="Assistant Program"></option>
+                                                                            <option value="Human Resources Manager">
+                                                                            </option>
+                                                                            <option value="Assistant Human Resources">
+                                                                            </option>
+                                                                            <option value="Logistic Manager"></option>
+                                                                            <option value="Assistant Logistic"></option>
+                                                                            <option value="Publicity Manager"></option>
+                                                                            <option value="Publicity Advisor"></option>
+                                                                            <option value="Assistant Publicity">
+                                                                            </option>
+                                                                            <option value="Treasurer"></option>
+                                                                            <option value="Assistant Treasurer">
+                                                                            </option>
+                                                                            <option value="Sales & Marketing Manager">
+                                                                            </option>
+                                                                            <option value="Assistant Sales & Marketing">
+                                                                            </option>
+                                                                            <option value="Secretary"></option>
+                                                                            <option value="Assistant Secretary">
+                                                                            </option>
+                                                                            <option value="Decoration Manager"></option>
+                                                                            <option value="Assistant Decoration">
+                                                                            </option>
+                                                                        </datalist>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-5 col-md-12 text-right">
+                                                                    <div class="input-group" id="node-type-panel">
+                                                                        <div class="input-group-prepend">
+                                                                            <div class="input-group-text">
+                                                                                <input type="radio" name="node-type"
+                                                                                    id="rd-parent" value="parent">
+                                                                            </div>
+                                                                        </div>
+                                                                        <input for="rd-parent" type="text"
+                                                                            class="form-control" value="Parent(root)"
+                                                                            readonly>
+
+                                                                        <div class="input-group-prepend">
+                                                                            <div class="input-group-text">
+                                                                                <input type="radio" name="node-type"
+                                                                                    id="rd-child" value="children">
+                                                                            </div>
+                                                                        </div>
+                                                                        <input for="rd-child" type="text"
+                                                                            class="form-control" value="Child" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-7 col-md-12 text-right">
+                                                                    <button type="button" class="btn btn-primary btn-wd"
+                                                                        id="btn-add-nodes">Add</button>
+                                                                    <button type="button"
+                                                                        class="btn btn-secondary btn-wd"
+                                                                        id="btn-edit-nodes">Edit</button>
+                                                                    <button type="button"
+                                                                        class="btn btn-danger btn-fill btn-info btn-wd"
+                                                                        id="btn-delete-nodes">Delete</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wizard-footer">
+                                <div class="float-right">
+                                    <input type='button' class='btn btn-next btn-fill btn-info btn-wd' name='next'
+                                        value='Next' />
+                                    <input type='button' class='btn btn-finish btn-fill btn-secondary btn-wd'
+                                        data-dismiss="modal" aria-label="Close" name='finish' value='Finish'
+                                        onclick='resetcreateEvent()' />
+                                </div>
+
+                                <div class="float-left">
+                                    <input type='button' class='btn btn-previous btn-fill btn-info btn-wd'
+                                        name='previous' value='Previous' />
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div> <!-- wizard container -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Modal-->
+    <div class="modal" id="actModal" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Activity</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id='activities_viewonly'></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Scan Modal-->
+    <div class="modal" id="qrModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Scan QR Code</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="QR-container">
+                        <div>
+                            <video id="QRpreview" class="container-fluid"></video>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal-->
+    <div class="modal fade" id="qrCodeModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My QR Code</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="QRcode_preview" class="container-fluid"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- Js / Jquery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/wizard/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+    <!-- Firebase login-->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase.js"></script>
+    <script src="js/AccountFirebase.js"></script>
+
+    <!-- FullCalendar plugin -->
+    <script src="vendor/fullcalendar/core/main.js"></script>
+    <script src="vendor/fullcalendar/daygrid/main.js"></script>
+    <script src="vendor/fullcalendar/timegrid/main.js"></script>
+    <script src="vendor/fullcalendar/interaction/main.js"></script>
+
+    <!-- jQuery Pull to Refresh plugin -->
+    <script src='vendor/pulltorefresh/jquery.p2r.min.js' type='text/javascript' defer></script>
+
+    <!--  Wizard & Validate	 -->
+    <script src="vendor/wizard/js/paper-bootstrap-wizard.js"></script>
+    <script src="vendor/wizard/js/jquery.validate.min.js"></script>
+
+    <!-- QR Scanner -->
+    <script src="vendor/QRScan/instascan.min.js"></script>
+
+    <!-- QR Code Generator -->
+    <script src="vendor/QRCode/jquery-qrcode.min.js"></script>
+
+    <!-- Org Chart -->
+    <script src="vendor/OrgChart/js/jquery.orgchart.min.js"></script>
+
+    <!-- Custome JS -->
+    <script src="js/utar2share.js"></script>
+    <script src="js/bootstrap-dialog.min.js"></script>
+    <script src="js/qrcode.js"></script>
+
+    <script>
+
+        var oc;
+        var arr = [];
+        var datasource;
+        var gd_weather_code = ["31", "32", "33", "34", "36"];
+        var calendarEl = document.getElementById('calendar');
+        var calendarE2 = document.getElementById('activities_calendar');
+        var calendarE3 = document.getElementById('activities_viewonly');
+        var calendar;
+        var act_calendar;
+        var act_viewonly;
+        var eventidcreated;
+        var quotaexceed_bg_pic = "images/bg-sample.jpg";
+
+        $(window).resize(function () {
+            var width = $(window).width();
+            if (width < 650) $('.fc-header-toolbar').addClass("font-sm-size");
+            else $('.fc-header-toolbar').removeClass("font-sm-size")
+        });
+
+        $(function () {//onload
+
+            $("#eventdata_row").html('<div class="col-12" id="norecord"><div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">Please Wait, Loading...</div></div></div>');
+
+            initApp().then(function (user) {
+                get_events(user);
+            });
+
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['interaction', 'dayGrid'],
+                header: {
+                    right: 'prev,next today',
+                    center: '',
+                    left: 'title'
+                },
+                selectable: true,
+                selectAllow: function (info) {
+                    return moment().diff(info.start) <= 0
+                },
+                eventConstraint: {
+                    start: moment().format('YYYY-MM-DD'),
+                    end: '2100-01-01' // hard coded unfortunately
+                },
+                select: function (info) {
+                    var title = $('#eventname').val();
+
+                    if (title && $("#eventcreated").val() == "") {
+
+                        getconfirmMsg(info).then(function (confirmMsg) {
+                            if (confirmMsg) {
+                                calendar.addEventSource([
+                                    {
+                                        id: 'eventloading',
+                                        title: 'Please wait, Inserting...',
+                                        allDay: true,
+                                        editable: false,
+                                        start: info.start,
+                                        end: info.end
+                                    }
+                                ]);
+
+                                var newPostKey = firebase.database().ref().child('event-image').push().key;
+                                var storageRef = firebase.storage().ref();
+                                var file = $("#eventpic")[0].files[0];
+                                var metadata = {
+                                    'contentType': file.type
+                                };
+                                storageRef.child('event-image/' + newPostKey).put(file, metadata).then(function (snapshot) {
+                                    snapshot.ref.getDownloadURL().then(function (downloadURL) {
+
+                                        //Add event data into Firestore
+                                        var obj = new Object();
+                                        obj.title = title;
+                                        obj.desc = $('#eventdesc').val();
+                                        obj.city = $('#eventcity').val();
+                                        obj.location = $('#eventlocation').val();
+                                        obj.starttime = $('#eventtime').val();
+                                        obj.start = info.start;
+                                        obj.end = info.end;
+                                        obj.photoname = newPostKey;
+                                        obj.photourl = downloadURL;
+                                        obj.total_participant = 0;
+                                        obj.insertDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                                        obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                                        obj.creatorid = firebase.auth().currentUser.uid;
+                                        obj.status = 1;
+
+                                        // Add a new document in collection "Events"
+                                        firebase.firestore().collection("event").add(obj).then(function (thisDoc) {
+                                            calendar.getEventById("eventloading").remove();
+                                            eventidcreated = obj.id = thisDoc.id;
+                                            calendar.addEventSource([
+                                                {
+                                                    id: thisDoc.id,
+                                                    title: obj.title,
+                                                    start: obj.start,
+                                                    end: obj.end,
+                                                    allDay: true,
+                                                    editable: true,
+                                                    extendedProps: {
+                                                        photoname: obj.photoname
+                                                    }
+                                                }
+                                            ]);
+
+                                            $("#eventcreated").val("created");
+                                            create_timegird(obj);
+                                        }).catch(function (error) {
+                                            console.log(error);
+                                        });
+                                    });
+                                });
+                            }
+                        });
+                    }
+                },
+                // Delete Event
+                eventClick: function (info) {
+                    if (info.event.id != 'eventloading') {
+                        $.dialog.confirm('Delete Your Event', 'Do you really want to delete ? </br> It will remove all data, unable to recover again.', function (deleteMsg) {
+                            if (deleteMsg) {
+                                firebase.firestore().collection("event_activity").where("eventid", "==", info.event.id).get().then(function (querySnapshot) {
+                                    querySnapshot.forEach(function (thisDoc) {
+                                        thisDoc.ref.delete();
+                                    });
+                                    firebase.firestore().collection("event_participants").where("eid", "==", info.event.id).get().then(function (partSnapshot) {
+                                        partSnapshot.forEach(function (thisDoc) {
+                                            thisDoc.ref.delete();
+                                        });
+                                        firebase.firestore().collection("event_team").where("eventid", "==", info.event.id).get().then(function (teamSnapshot) {
+                                            teamSnapshot.forEach(function (thisDoc) {
+                                                thisDoc.ref.delete();
+                                            });
+                                            firebase.storage().ref().child('event-image/' + info.event.extendedProps.photoname).delete().catch(function (error) {
+                                                console.log(error);
+                                            });
+                                            firebase.firestore().collection("event").doc(info.event.id).delete().catch(function (error) {
+                                                console.log(error);
+                                            });
+                                        }).catch(function (error) {
+                                            console.log(error);
+                                        });
+                                    }).catch(function (error) {
+                                        console.log(error);
+                                    });
+
+                                    var event = calendar.getEventById(info.event.id);
+                                    event.remove();
+                                    $("#eventcreated").val("");
+                                    act_calendar.destroy();
+                                    if ($('#eventmethod').val() == 'edit') {
+                                        resetcreateEvent();
+                                    }
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                            }
+                        });
+                    }
+                },
+                eventDrop: function (info) {
+                    getconfirmMsg(info.event).then(function (confirmMsg) {
+                        if (confirmMsg) {
+                            var obj = new Object();
+                            obj.start = info.event.start;
+                            obj.end = info.event.end;
+                            obj.city = $('#eventcity').val();
+                            obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                            firebase.firestore().collection("event").doc(info.event.id).update(obj).then(function (doc) {
+                                firebase.firestore().collection("event_activity").where("eventid", "==", info.event.id).orderBy("start", "asc").get().then(function (querySnapshot) {
+                                    if (!querySnapshot.empty) {
+                                        act_calendar.destroy();
+                                        create_timegird(info.event);
+                                        var addday = 0;
+                                        var adde = false;
+                                        querySnapshot.forEach(function (thisDoc) {
+                                            var actobj = new Object();
+                                            var newstart = moment(obj.start);
+                                            var oldstart = moment(moment.unix(thisDoc.data().start.seconds).format("YYYY-MM-DD"));
+                                            if (!addday) {
+                                                addday = Math.abs(newstart.diff(oldstart, 'days'));
+                                            }
+
+                                            if (newstart >= oldstart || adde) {
+                                                adde = true;
+                                                actobj.start = moment.unix(thisDoc.data().start.seconds).add(addday, 'days').toDate();
+                                                actobj.end = moment.unix(thisDoc.data().end.seconds).add(addday, 'days').toDate();
+                                            } else {
+                                                actobj.start = moment.unix(thisDoc.data().start.seconds).subtract(addday, 'days').toDate();
+                                                actobj.end = moment.unix(thisDoc.data().end.seconds).subtract(addday, 'days').toDate();
+                                            }
+                                            actobj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                                            thisDoc.ref.update(actobj);
+
+                                            actobj.id = thisDoc.id;
+                                            actobj.title = thisDoc.data().title;
+                                            actobj.allDay = false;
+                                            actobj.editable = true;
+                                            addevent_timegrid(actobj)
+                                        });
+                                    }
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                            }).catch(function (error) {
+                                console.log(error);
+                            });
+                        } else {
+                            info.revert();
+                        }
+                    });
+                },
+                eventResize: function (info) {
+                    getconfirmMsg(info.event).then(function (confirmMsg) {
+                        if (confirmMsg) {
+                            var obj = new Object();
+                            obj.city = $('#eventcity').val();
+                            obj.end = info.event.end;
+                            obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                            firebase.firestore().collection("event").doc(info.event.id).update(obj).then(function (thisDoc) {
+                                firebase.firestore().collection("event_activity").where("eventid", "==", info.event.id).orderBy("start", "asc").get().then(function (querySnapshot) {
+                                    if (!querySnapshot.empty) {
+                                        act_calendar.destroy();
+                                        create_timegird(info.event);
+                                        querySnapshot.forEach(function (thisDoc) {
+                                            var actobj = new Object();
+                                            var newend = moment(obj.end);
+                                            var oldend = moment(moment.unix(thisDoc.data().end.seconds).format("YYYY-MM-DD"));
+                                            if (newend > oldend) {
+                                                actobj.id = thisDoc.id;
+                                                actobj.title = thisDoc.data().title;
+                                                actobj.start = moment.unix(thisDoc.data().start.seconds).toDate();
+                                                actobj.end = moment.unix(thisDoc.data().end.seconds).toDate();
+                                                actobj.allDay = false;
+                                                actobj.editable = true;
+                                                addevent_timegrid(actobj)
+                                            } else {
+                                                thisDoc.ref.delete();
+                                            }
+                                        });
+                                    }
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                            }).catch(function (error) {
+                                console.log(error);
+                            });
+                        } else {
+                            info.revert();
+                        }
+                    });
+                },
+                eventRender: function (info) {
+                    if (info.event.rendering == 'background') {
+                        $(info.el).css('background', 'url(images/weather/'
+                            + info.event.title + '.png) center center / contain no-repeat');
+                        $(info.el).html('<input type="hidden" id="' + info.event.id + 'w_day" value="' + info.event.extendedProps.w_day + '" />');
+                        $(info.el).append('<input type="hidden" id="' + info.event.id + 'code" value="' + info.event.extendedProps.code + '" />');
+                    }
+                }
+            });
+            calendar.render();
+
+            $('.fc-center').html('<div id="eventcity_cl"></div>');
+            retrieve_weather("Kampar");
+
+            $('#chart-container').on('click', '.node', function () {
+                var $this = $(this);
+                $('#selected-node').val($this.find('.orgtitle').text()).data('node', $this);
+                $("#searchname").val($this[0].email);
+                $("#searchname").trigger("keyup");
+                $("#rolename").val($this[0].title);
+            });
+
+            $('#searchname').on('keyup', function () {
+                var nodeNamechoosen = $("#namelist").find("option[value='" + $("#searchname").val() + "']");
+                if ($(this).val().trim() && !nodeNamechoosen.length) {
+                    var db = firebase.firestore().collection("users");
+                    db = db.where("email", ">=", $(this).val());
+                    db = db.where("email", "<=", $(this).val() + '\uf8ff');
+                    db = db.orderBy("email", "asc");
+                    db = db.limit(5);
+                    db.get().then(function (snapshot) {
+                        if (!snapshot.empty) {
+                            $("#namelist").html("");
+                            snapshot.forEach(function (change) {
+                                $("#namelist").append('<option data-id="' + change.id + '" data-name="' + change.data().displayName + '" data-profile="' + change.data().photoURL + '" value="' + change.data().email + '"></option>');
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#btn-add-nodes').on('click', function () {
+                var chartContainer = $('#chart-container');
+                var nodeVals = [];
+                var nodeVals_node = [];
+                var nodeNamechoosen = $("#namelist").find("option[value='" + $("#searchname").val() + "']");
+                if (nodeNamechoosen.data("name") && nodeNamechoosen.data("name").trim()) nodeVals_node.push(nodeNamechoosen.data("name").trim());
+                if ($("#rolename").val().trim()) nodeVals_node.push($("#rolename").val().trim());
+                nodeVals.push(nodeVals_node);
+
+                var nodeType = $('input[name="node-type"]:checked');
+                var $node = $('#selected-node').data('node');
+                if (nodeVals_node.length < 2) {
+                    $.dialog.alert('404', 'Please enter value for new node.');
+                    return;
+                } else if (!nodeType.length) {
+                    $.dialog.alert('404', 'Please select a node type.');
+                    return;
+                } else if (nodeType.val() !== 'parent' && !$('.orgchart').length) {
+                    $.dialog.alert('404', 'Please create the root node firstly when you want to build up the orgchart from the scratch.');
+                    return;
+                } else if (nodeType.val() !== 'parent' && !$('#selected-node').val().trim()) {
+                    $.dialog.alert('404', 'Please select one node in organization chart.');
+                    return;
+                } else if (!nodeNamechoosen || !nodeNamechoosen.length) {
+                    $.dialog.alert('404', 'Please enter correct email address.');
+                    return;
+                } else if ($(".orgchart #" + nodeNamechoosen.data("id")).length) {
+                    $.dialog.alert('404', 'Duplicate node found.');
+                    return;
+                }
+                $("#org_norecord").remove();
+
+                //Add user data into Firestore
+                var obj = new Object();
+                obj.eventid = eventidcreated;
+                obj.userid = nodeNamechoosen.data("id");
+                obj.role = nodeVals[0][1];
+                obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                obj.insertDateTime = firebase.firestore.FieldValue.serverTimestamp();
+
+                if (nodeType.val() === 'parent') {
+
+                    obj.upline_uid = "";
+                    obj.level = 1;
+
+                    if (!chartContainer.children('.orgchart').length) {// if the original chart has been deleted
+                        if (addTeammember(obj, 1)) {
+                            retrieveOrgchart();
+                        }
+                    } else {
+                        addTeammember(obj, 2);
+                    }
+                } else {
+                    obj.upline_uid = $node[0].id;
+                    obj.level = $node[0].level + 1;
+                    if (addTeammember(obj, 1)) {
+                        retrieveOrgchart();
+                    }
+                }
+            });
+
+            $('#btn-edit-nodes').on('click', function () {
+                var nodeVals = [];
+                var nodeVals_node = [];
+                var nodeEmailchoosen = $("#searchname").val().trim();
+                var nodeNamechoosen = $("#namelist").find("option[value='" + nodeEmailchoosen + "']");
+                if (nodeNamechoosen.data("name") && nodeNamechoosen.data("name").trim()) nodeVals_node.push(nodeNamechoosen.data("name").trim());
+                if ($("#rolename").val().trim()) nodeVals_node.push($("#rolename").val().trim());
+                nodeVals.push(nodeVals_node);
+
+                var $node = $('#selected-node').data('node');
+                if (nodeVals_node.length < 2) {
+                    $.dialog.alert('404', 'Please enter value for new node.');
+                    return;
+                } else if (!$('#selected-node').val().trim()) {
+                    $.dialog.alert('404', 'Please select one node in organization chart.');
+                    return;
+                } else if (!nodeNamechoosen || !nodeNamechoosen.length) {
+                    $.dialog.alert('404', 'Please enter correct email address.');
+                    return;
+                } else if ($(".orgchart #" + nodeNamechoosen.data("id")).length && $node[0].id != nodeNamechoosen.data("id")) {
+                    $.dialog.alert('404', 'Duplicate node found.');
+                    return;
+                } else {
+                    firebase.firestore().collection("event_team")
+                        .where("eventid", "==", eventidcreated)
+                        .where("userid", "==", $node[0].id)
+                        .get().then(function (teamSnapshot) {
+                            if (!teamSnapshot.empty) {
+                                teamSnapshot.forEach(function (thisDoc) {
+                                    if ($node[0].email == nodeEmailchoosen) {
+                                        thisDoc.ref.update({
+                                            "role": nodeVals[0][1],
+                                            "updateDateTime": firebase.firestore.FieldValue.serverTimestamp()
+                                        }).then(function () {
+                                            retrieveOrgchart();
+                                        }).catch(function (error) {
+                                            console.log(error);
+                                        });
+                                    } else {
+                                        var obj = new Object();
+                                        obj.eventid = eventidcreated;
+                                        obj.userid = nodeNamechoosen.data("id");
+                                        obj.role = nodeVals[0][1];
+                                        obj.upline_uid = thisDoc.data().upline_uid;
+                                        obj.level = thisDoc.data().level;
+                                        obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                                        obj.insertDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                                        if (addTeammember(obj, 1)) {
+                                            firebase.firestore().collection("event_team")
+                                                .where("eventid", "==", eventidcreated)
+                                                .where("upline_uid", "==", thisDoc.data().userid)
+                                                .get().then(function (childSnapshot) {
+                                                    if (!childSnapshot.empty) {
+                                                        childSnapshot.forEach(function (doc) {
+                                                            doc.ref.update({
+                                                                "upline_uid": obj.userid,
+                                                                "updateDateTime": firebase.firestore.FieldValue.serverTimestamp()
+                                                            }).catch(function (error) {
+                                                                console.log(error);
+                                                            });
+                                                        });
+                                                    }
+                                                    thisDoc.ref.delete().then(function () {
+                                                        retrieveOrgchart();
+                                                    });
+                                                });
+                                        }
+                                    }
+                                });
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            });
+
+            $('#btn-delete-nodes').on('click', function () {
+                var $node = $('#selected-node').data('node');
+                if (!$('#selected-node').val().trim()) {
+                    $.dialog.alert('404', 'Please select one node in organization chart.');
+                    return;
+                } else if ($node[0] === $('.orgchart').find('.node:first')[0]) {
+                    $.dialog.confirm('Delete Parent Node', 'Are you sure you want to delete the whole chart?', function (confimMsg) {
+                        if (confimMsg) {
+                            if (deleteTeammember("", 1)) {
+                                oc.init({ 'data': {} });
+                                $('#chart-container').html('<div id="org_norecord" class="h-100 d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                            }
+                        } else {
+                            return;
+                        }
+                    });
+                } else {
+                    $.dialog.confirm('Delete Node', 'Are you sure you want to delete?', function (confimMsg) {
+                        if (confimMsg) {
+                            firebase.firestore().collection("event_team")
+                                .where("eventid", "==", eventidcreated)
+                                .where("userid", "==", $node[0].id)
+                                .get().then(function (teamSnapshot) {
+                                    if (!teamSnapshot.empty) {
+                                        teamSnapshot.forEach(function (thisDoc) {
+                                            firebase.firestore().collection("event_team")
+                                                .where("eventid", "==", eventidcreated)
+                                                .where("upline_uid", "==", thisDoc.data().userid)
+                                                .get().then(function (childSnapshot) {
+                                                    if (!childSnapshot.empty) {
+                                                        childSnapshot.forEach(function (doc) {
+                                                            doc.ref.update({
+                                                                "upline_uid": thisDoc.data().upline_uid,
+                                                                "level": thisDoc.data().level,
+                                                                "updateDateTime": firebase.firestore.FieldValue.serverTimestamp()
+                                                            }).then(function () {
+                                                                deleteTeammember(doc, 2);
+                                                            }).catch(function (error) {
+                                                                console.log(error);
+                                                            });
+                                                        });
+                                                    }
+                                                    thisDoc.ref.delete().then(function () {
+                                                        retrieveOrgchart();
+                                                    });
+                                                });
+                                        });
+                                    }
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                        }
+                    });
+                }
+            });
+
+        });
+
+        var nodeTemplate = function (data) {
+            return `
+                <div class="row org-node shadow">
+                    <div class="col-4 org-profile" style="background:url('${data.profile}') center center / cover no-repeat;"></div>
+                    <div class="col-8 row pr-1 align-items-center text-left">
+                        <div class="orgtitle col-12 pl-3 pt-3 text-truncate" title="${data.name}">${data.name}</div>
+                        <div class="col-12 pl-3 pb-3 text-truncate text-gray-600" title="${data.title}">${data.title}</div>
+                    </div>
+                </div>
+            `;
+        };
+
+        function addTeammember(obj, method) {
+            if (method == 2) {
+                var no = 0;
+                return firebase.firestore().collection("event_team").where("eventid", "==", obj.eventid).get().then(function (thissp) {
+                    firebase.firestore().collection("event_team").add(obj).then(function () {
+                        thissp.forEach(function (doc) {
+                            if (doc.data().upline_uid == "") {
+                                doc.ref.update({
+                                    "upline_uid": obj.userid,
+                                    "level": doc.data().level + 1,
+                                    "updateDateTime": firebase.firestore.FieldValue.serverTimestamp()
+                                });
+                            } else {
+                                doc.ref.update({
+                                    "level": doc.data().level + 1,
+                                    "updateDateTime": firebase.firestore.FieldValue.serverTimestamp()
+                                });
+                            }
+                            if (++no == thissp.size) {
+                                retrieveOrgchart();
+                                return true;
+                            }
+                        });
+                    }).catch(function (error) {
+                        console.log(error);
+                        return true;
+                    });
+                });
+            } else {
+                return firebase.firestore().collection("event_team").add(obj).then(function () {
+                    return true;
+                }).catch(function (error) {
+                    console.log(error);
+                    return true;
+                });
+            }
+        }
+
+        function deleteTeammember(doc, method) {
+            if (method == 2) {
+                return firebase.firestore().collection("event_team")
+                    .where("eventid", "==", eventidcreated)
+                    .where("upline_uid", "==", doc.data().userid)
+                    .get().then(function (childSnapshot) {
+                        if (!childSnapshot.empty) {
+                            childSnapshot.forEach(function (thisdoc) {
+                                thisdoc.ref.update({
+                                    "level": doc.data().level,
+                                    "updateDateTime": firebase.firestore.FieldValue.serverTimestamp()
+                                }).then(function () {
+                                    deleteTeammember(thisdoc, method);
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                            });
+                        }
+                        return true;
+                    }).catch(function (error) {
+                        console.log(error);
+                        return true;
+                    });
+            } else {
+                return firebase.firestore().collection("event_team")
+                    .where("eventid", "==", eventidcreated)
+                    .get().then(function (childSnapshot) {
+                        if (!childSnapshot.empty) {
+                            childSnapshot.forEach(function (thisdoc) {
+                                thisdoc.ref.delete().then(function () {
+
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                            });
+                        }
+                        return true;
+                    }).catch(function (error) {
+                        console.log(error);
+                        return true;
+                    });
+            }
+        }
+
+        function retrieveOrgchart() {
+            $('#chart-container').append('<div id="org_norecord" class="h-100 d-inline-flex align-items-center justify-content-center"><div class="">Please Wait, Loading...</div></div>');
+            var i = 0;
+            datasource = new Object();
+            var db = firebase.firestore().collection("event_team")
+            db = db.where("eventid", "==", eventidcreated);
+            db = db.orderBy("level", "asc");
+            db = db.orderBy("insertDateTime", "asc");
+            db.get().then(function (snapshot) {
+                if (snapshot.size > 0) {
+                    $("#org_norecord").remove();
+                    snapshot.forEach(function (change) {
+                        firebase.firestore().collection("users").doc(change.data().userid).get().then(function (docref) {
+                            if (change.data().upline_uid == "") {
+                                if (i) {
+                                    datasource.relationship = "110";
+                                    datasource = {
+                                        'id': change.data().userid,
+                                        'name': docref.data().displayName,
+                                        'email': docref.data().email,
+                                        'profile': docref.data().photoURL,
+                                        'title': change.data().role,
+                                        'level': change.data().level,
+                                        'children': [datasource]
+                                    }
+                                } else {
+                                    datasource = {
+                                        'id': change.data().userid,
+                                        'name': docref.data().displayName,
+                                        'email': docref.data().email,
+                                        'profile': docref.data().photoURL,
+                                        'title': change.data().role,
+                                        'level': change.data().level,
+                                        'children': []
+                                    }
+                                }
+                                i++;
+                            } else {
+                                var pushnode = getObjects(datasource, 'id', change.data().upline_uid)[0];
+                                if (pushnode) {
+                                    pushnode.children.push({
+                                        'id': change.data().userid,
+                                        'name': docref.data().displayName,
+                                        'email': docref.data().email,
+                                        'profile': docref.data().photoURL,
+                                        'title': change.data().role,
+                                        'level': change.data().level,
+                                        'relationship': '110',
+                                        'children': []
+                                    });
+                                    i++;
+                                }
+                            }
+                            if (i == snapshot.size) {
+                                if (!$('#chart-container').children('.orgchart').length) {
+                                    oc = $('#chart-container').orgchart({
+                                        'data': datasource,
+                                        'chartClass': 'edit-state',
+                                        'nodeContent': 'title',
+                                        'pan': true,
+                                        'parentNodeSymbol': 'fa-th-large',
+                                        'nodeTemplate': nodeTemplate,
+                                        'createNode': function ($node, data) {
+                                            $node[0].id = data.id;
+                                            $node[0].level = data.level;
+                                            $node[0].email = data.email;
+                                            $node[0].title = data.title;
+                                        }
+                                    });
+                                } else {
+                                    oc.init({ 'data': datasource });
+                                }
+                            }
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    });
+                } else {
+                    i = 0;
+                    datasource = {};
+                    $('#chart-container').html('<div id="org_norecord" class="h-100 d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function getconfirmMsg(info) {
+            return new Promise((resolve, reject) => {
+                var weather_st = "unknown";
+                for (var d = new Date(info.start); d < new Date(info.end); d.setDate(d.getDate() + 1)) {
+                    var w_id = moment(d).format("YYYY-MM-DD");
+                    if ($('#' + w_id + 'w_day').val() && weather_st == "unknown" && $.inArray($('#' + w_id + 'code').val(), gd_weather_code) != -1) {
+                        weather_st = "good";
+                    } else if ($('#' + w_id + 'w_day').val()) {
+                        weather_st = $('#' + w_id + 'w_day').val();
+                        break;
+                    }
+                }
+                if (weather_st != "good") {
+                    $.dialog.confirm('Create Event', 'Do you really want to create/move event in ' + weather_st + ' weather ?', function (confirm) {
+                        resolve(confirm);
+                    });
+                } else {
+                    resolve(true);
+                }
+            });
+        }
+
+        function get_events(user) {
+            var displaydate = new Date();
+            displaydate.setDate(displaydate.getDate() + 1);
+
+            var db = firebase.firestore().collection("event");
+            //db = db.where("creatorid", "==", user.uid);
+            //db = db.where("status", "==", 1);
+            db = db.where("end", ">", displaydate);
+            db = db.orderBy("end", "asc");
+            db = db.orderBy("start", "asc");
+            db.onSnapshot(function (snapshot) {
+                if (!snapshot.empty) {
+                    snapshot.docChanges().forEach(function (change) {
+                        if (change.doc.data().status == 0 || change.type === "removed") $("#" + change.doc.id).remove();
+                        else if (change.type !== "removed") {
+                            var tdb = firebase.firestore().collection("event_team");
+                            tdb = tdb.where("eventid", "==", change.doc.id);
+                            tdb.onSnapshot(function (tsnapshot) {
+
+                                var teamarr = [];
+                                teamarr.push(change.doc.data().creatorid);
+                                if (!tsnapshot.empty) {
+                                    tsnapshot.docChanges().forEach(function (thisdoc) {
+                                        if (thisdoc.doc.data().userid != change.doc.data().creatorid) {
+                                            teamarr.push(thisdoc.doc.data().userid);
+                                        }
+                                    });
+                                }
+                                if ($.inArray(firebase.auth().currentUser.uid, teamarr) != -1) {
+                                    if ((firebase.auth().currentUser.uid != change.doc.data().creatorid && change.doc.data().status == 1) ||
+                                        firebase.auth().currentUser.uid == change.doc.data().creatorid) {
+                                        var wdb = firebase.firestore().collection("weather");
+                                        wdb = wdb.where("location", "==", change.doc.data().city);
+                                        wdb = wdb.where("date", "==", moment.unix(change.doc.data().start.seconds).format("YYYY-MM-DD"));
+                                        wdb.onSnapshot(function (wsnapshot) {
+                                            var wcode = 44;
+                                            if (!wsnapshot.empty) {
+                                                wsnapshot.docChanges().forEach(function (thisdoc) {
+                                                    wcode = thisdoc.doc.data().code;
+                                                });
+                                            }
+                                            get_eventData(change, wcode, teamarr);
+                                        });
+                                    }
+                                }
+                            });
+                        } else {
+                            $("#" + change.doc.id).remove();
+                        }
+                        $("#norecord").remove();
+                    });
+                } else {
+                    $("#norecord").html('<div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                }
+            });
+        }
+
+        function createEvent_title() {
+            if ($('#eventmethod').val() == 'edit') resetcreateEvent();
+            pic_valid = true;
+            $('#eventmodal_title').html("Create Event");
+            $('#eventmethod').val("create");
+        }
+
+        function editEvent(eid) {
+            resetcreateEvent();
+            pic_valid = false;
+            $('#eventmodal_title').html("Edit Event");
+            $('#eventmethod').val("edit");
+
+            var db = firebase.firestore().collection("event").doc(eid).get().then(function (eventdoc) {
+                if (!quotaexceed) $('#wizardPicturePreview').attr('src', eventdoc.data().photourl);
+                else {
+                    $('#wizardPicturePreview').attr('src', quotaexceed_bg_pic);
+                }
+                $('#eventname').val(eventdoc.data().title);
+                $('#eventdesc').val(eventdoc.data().desc);
+                $('#eventlocation').val(eventdoc.data().location);
+                $('#eventtime').val(eventdoc.data().starttime);
+
+                var obj = new Object();
+                obj.id = eid;
+                obj.title = eventdoc.data().title;
+                obj.starttime = eventdoc.data().starttime;
+                obj.start = moment.unix(eventdoc.data().start.seconds);
+                obj.end = moment.unix(eventdoc.data().end.seconds);
+                retrieve_weather(eventdoc.data().city);
+                eventidcreated = eid;
+                calendar.addEventSource([
+                    {
+                        id: obj.id,
+                        title: obj.title,
+                        start: moment.unix(eventdoc.data().start.seconds).format("YYYY-MM-DD"),
+                        end: moment.unix(eventdoc.data().end.seconds).format("YYYY-MM-DD"),
+                        allDay: true,
+                        editable: true,
+                        extendedProps: {
+                            photoname: eventdoc.data().photoname
+                        }
+                    }
+                ]);
+                $("#eventcreated").val("created");
+                create_timegird(obj);
+                calendar.gotoDate(moment(obj.start).format("YYYY-MM-DD"));
+
+                $("#wizardModal").modal("show");
+
+                firebase.firestore().collection("event_activity").where("eventid", "==", eid).get().then(function (activitycol) {
+                    activitycol.forEach(function (activitydoc) {
+                        var obj = new Object();
+                        obj.id = activitydoc.id;
+                        obj.title = activitydoc.data().title;
+                        obj.start = moment.unix(activitydoc.data().start.seconds).format("YYYY-MM-DD HH:mm:ss");
+                        obj.end = moment.unix(activitydoc.data().end.seconds).format("YYYY-MM-DD HH:mm:ss");
+                        obj.allDay = false;
+                        obj.editable = true;
+                        addevent_timegrid(obj);
+                    });
+                }).catch(function (error) {
+                    console.log(error);
+                });
+
+                retrieveOrgchart();
+
+            }).catch(function (error) {
+                console.log(error);
+            });
+
+        }
+
+        function getObjects(obj, key, val) {
+            var objects = [];
+            for (var i in obj) {
+                if (!obj.hasOwnProperty(i)) continue;
+                if (typeof obj[i] == 'object') {
+                    objects = objects.concat(getObjects(obj[i], key, val));
+                } else if (i == key && obj[key] == val) {
+                    objects.push(obj);
+                }
+            }
+            return objects;
+        }
+
+        function updateEvent(index) {
+            var obj = new Object();
+            obj.title = $('#eventname').val();
+            obj.desc = $('#eventdesc').val();
+            obj.location = $('#eventlocation').val();
+            obj.city = $('#eventcity').val();
+            obj.starttime = $('#eventtime').val();
+            obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+            var cal_obj = calendar.getEventById(eventidcreated);
+
+            if (validate_picture()) {
+
+                firebase.storage().ref().child('event-image/' + cal_obj.extendedProps.photoname).delete().catch(function (error) {
+                    console.log(error);
+                });
+
+                var newPostKey = firebase.database().ref().child('event-image').push().key;
+                var storageRef = firebase.storage().ref();
+                var file = $("#eventpic")[0].files[0];
+                var metadata = {
+                    'contentType': file.type
+                };
+                storageRef.child('event-image/' + newPostKey).put(file, metadata).then(function (snapshot) {
+                    snapshot.ref.getDownloadURL().then(function (downloadURL) {
+
+                        //Update event data into Firestore
+                        obj.photoname = newPostKey;
+                        obj.photourl = downloadURL;
+
+                        // Update a new document in collection "Events"
+                        firebase.firestore().collection("event").doc(eventidcreated).update(obj).then(function (thisDoc) {
+                            obj.start = cal_obj.start;
+                            obj.end = cal_obj.end;
+                            cal_obj.remove()
+                            calendar.addEventSource([
+                                {
+                                    id: eventidcreated,
+                                    title: obj.title,
+                                    start: obj.start,
+                                    end: obj.end,
+                                    allDay: true,
+                                    editable: true,
+                                    extendedProps: {
+                                        photoname: obj.photoname
+                                    }
+                                }
+                            ]);
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    });
+                });
+            } else {
+                firebase.firestore().collection("event").doc(eventidcreated).update(obj).then(function (thisDoc) {
+                    obj.start = cal_obj.start;
+                    obj.end = cal_obj.end;
+                    obj.photoname = cal_obj.extendedProps.photoname;
+                    cal_obj.remove()
+                    calendar.addEventSource([
+                        {
+                            id: eventidcreated,
+                            title: obj.title,
+                            start: obj.start,
+                            end: obj.end,
+                            allDay: true,
+                            editable: true,
+                            extendedProps: {
+                                photoname: obj.photoname
+                            }
+                        }
+                    ]);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        }
+
+        function deleteEvent(eid) {
+            $.dialog.confirm('Delete Your Event', 'Do you really want to delete ?', function (deleteMsg) {
+                if (deleteMsg) {
+                    var obj = new Object();
+                    obj.status = 0;
+                    obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                    firebase.firestore().collection("event").doc(eid).update(obj).catch(function (error) {
+                        console.log(error);
+                    });
+                    /*
+                    firebase.firestore().collection("event").doc(eid).get().then(function (doc) {
+                        firebase.firestore().collection("event_activity").where("eventid", "==", eid).get().then(function (querySnapshot) {
+                            querySnapshot.forEach(function (thisDoc) {
+                                thisDoc.ref.delete();
+                            });
+                            firebase.storage().ref().child('event-image/' + doc.data().photoname).delete().catch(function (error) {
+                                console.log(error);
+                            });
+                            firebase.firestore().collection("event").doc(eid).delete().catch(function (error) {
+                                console.log(error);
+                            });
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    });
+                    */
+                }
+            });
+        }
+
+        function cancelEvent(eid) {
+            $.dialog.confirm('Cancel Your Event', 'Do you really want to cancel ?', function (cancelMsg) {
+                if (cancelMsg) {
+                    var obj = new Object();
+                    obj.status = 2;
+                    obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                    firebase.firestore().collection("event").doc(eid).update(obj).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            });
+        }
+
+        function activeEvent(eid) {
+            $.dialog.confirm('Activate Your Event', 'Do you really want to activate back ?', function (activeMsg) {
+                if (activeMsg) {
+                    var obj = new Object();
+                    obj.status = 1;
+                    obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                    firebase.firestore().collection("event").doc(eid).update(obj).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            });
+        }
+
+        let qrscan_opts = {
+            continuous: true,
+            video: document.getElementById('QRpreview'),
+            mirror: false,
+            captureImage: false,
+            backgroundScan: false,
+            refractoryPeriod: 5000,
+            scanPeriod: 1
+        };
+        let scanner = new Instascan.Scanner(qrscan_opts);
+        var qrscan_eid;
+
+        function QRScan(eid) {
+            $("#qrModal").modal("show");
+            qrscan_eid = eid;
+
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                    scanner.start(cameras[cameras.length - 1]);
+                } else {
+                    console.error('No cameras found.');
+                }
+            }).catch(function (e) {
+                $("#qrModal").modal('hide');
+                $.dialog.alert('404 Error', 'No Cameras Found');
+                console.error(e);
+            });
+        }
+
+        $('#qrModal').on('hidden.bs.modal', function () {
+            scanner.stop();
+        });
+
+        scanner.addListener('scan', function (content) {
+            firebase.firestore().collection("users").doc(content).get().then(function (doc) {
+                if (doc.exists) {
+                    var docRef = firebase.firestore().collection("event_participants");
+                    var query = docRef.where("eid", "==", qrscan_eid);
+                    query = query.where("uid", "==", content)
+                    query.get().then(function (e_ptdoc) {
+                        if (e_ptdoc.empty) {
+                            var obj = new Object();
+                            obj.eid = qrscan_eid;
+                            obj.uid = content;
+                            obj.feedback = "";
+                            obj.insertDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                            obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                            obj.status = 2;
+                            docRef.add(obj);
+                            $.dialog.alert('User Check-in', doc.data().displayName + ' check-in done');
+                        } else {
+                            e_ptdoc.forEach(function (ptdoc) {
+                                if (ptdoc.data().status == 2) {
+                                    $.dialog.alert('Duplicated Entry', 'User already check-in');
+                                } else {
+                                    var obj = new Object();
+                                    obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                                    obj.status = 2;
+                                    docRef.doc(ptdoc.id).update(obj);
+                                    $.dialog.alert('User Check-in', doc.data().displayName + ' check-in done');
+                                }
+                            });
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                } else {
+                    $.dialog.alert('404 Error', 'User Not Found');
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        });
+
+        function get_eventData(change, wcode, teamarr) {
+            var data = "";
+            var event_time = moment(change.doc.data().starttime, "HH:mm");
+            var photourl = change.doc.data().photourl;
+            var eventdate = moment.unix(change.doc.data().start.seconds);
+            var buttonevent = "";
+            buttonevent += '<a href="#" class="btn btn-light btn-circle" title="QR Scan" onclick="QRScan(\'' + change.doc.id + '\')"><i class="fas fa-qrcode"></i></a>';
+            if (change.doc.data().creatorid == firebase.auth().currentUser.uid) {
+                buttonevent += '<a href="#" class="btn btn-primary btn-circle ml-2" title="Edit" onclick="editEvent(\'' + change.doc.id + '\')"><i class="far fa-edit"></i></a>';
+                if (change.doc.data().status == 2) buttonevent += '<a href="#" class="btn btn-info btn-circle ml-2" title="Activate" onclick="activeEvent(\'' + change.doc.id + '\')"><i class="fas fa-undo-alt"></i></a>';
+                else buttonevent += '<a href="#" class="btn btn-warning btn-circle ml-2" title="Cancel" onclick="cancelEvent(\'' + change.doc.id + '\')"><i class="far fa-window-close"></i></a>';
+                buttonevent += '<a href="#" class="btn btn-danger btn-circle ml-2" title="Delete" onclick="deleteEvent(\'' + change.doc.id + '\')"> <i class="far fa-trash-alt"></i></a>';
+            } else {
+                buttonevent += '<a href="#" class="btn btn-primary btn-circle ml-2" title="Show Activity" onclick="showactivity(\'' + change.doc.id + '\',' + moment.unix(change.doc.data().start.seconds) + ',' + moment.unix(change.doc.data().end.seconds) + ')"><i class="far fa-list-alt"></i></a>';
+
+            }
+            if (quotaexceed) photourl = quotaexceed_bg_pic;
+
+            if ($("#" + change.doc.id).length == 0) {
+                data += '<div class="col-lg-6 col-md-12" id="' + change.doc.id + '"><div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div></div>';
+                $("#eventdata_row").append(data);
+            } else if (change.type === "modified") {
+                var id = "#" + change.doc.id;
+                data += '<div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div>';
+                $(id).html(data);
+            }
+        }
+
+        function create_timegird(obj) {
+            var eventid = obj.id;
+            var dur = ((((obj.end - obj.start) / 1000) / 60) / 60) / 24;
+            act_calendar = new FullCalendar.Calendar(calendarE2, {
+                plugins: ['interaction', 'timeGrid'],
+                defaultView: 'timeGridDay',
+                header: {
+                    left: '',
+                    center: 'title',
+                    right: ''
+                },
+                views: {
+                    timeGridDay: {
+                        type: 'timeGrid',
+                        duration: { days: dur }
+                    }
+                },
+                defaultDate: moment(obj.start).format("YYYY-MM-DD"),
+                selectable: true,
+                selectAllow: function (info) {
+                    var stM = moment(info.start);
+                    var enM = moment(moment(obj.start).format("YYYY-MM-DD") + " " + $('#eventtime').val(), "YYYY-MM-DD HH:mm");
+                    return stM.diff(enM, "mm") > 0;
+                },
+                eventConstraint: {
+                    start: moment(moment(obj.start).format("YYYY-MM-DD") + " " + $('#eventtime').val(), "YYYY-MM-DD HH:mm").format("YYYY-MM-DD HH:mm"),
+                    end: moment(obj.end).format("YYYY-MM-DD HH:mm")
+                },
+                select: function (info) {
+                    var title = prompt('Activity Title:');
+
+                    if (title) {
+
+                        act_calendar.addEventSource([
+                            {
+                                id: 'timeeventloading',
+                                title: 'Please wait, Inserting...',
+                                editable: false,
+                                start: info.start,
+                                end: info.end
+                            }
+                        ]);
+
+                        //Add event data into Firestore
+                        var obj = new Object();
+                        obj.eventid = eventid;
+                        obj.title = title;
+                        obj.start = info.start;
+                        obj.end = info.end;
+                        obj.insertDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                        obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                        obj.status = 1;
+
+                        // Add a new document in collection "Events activity"
+                        firebase.firestore().collection("event_activity").add(obj).then(function (thisDoc) {
+                            act_calendar.getEventById("timeeventloading").remove();
+                            obj.id = thisDoc.id;
+                            obj.allDay = false;
+                            obj.editable = true;
+                            addevent_timegrid(obj);
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    }
+                },
+                eventClick: function (info) {
+                    if (info.event.id != 'timeeventloading') {
+                        $.dialog.confirm('Delete Your Activity', 'Do you really want to delete ?', function (deleteMsg) {
+                            if (deleteMsg) {
+                                firebase.firestore().collection("event_activity").doc(info.event.id).delete().then(function (thisDoc) {
+                                    var event = act_calendar.getEventById(info.event.id);
+                                    event.remove();
+                                }).catch(function (error) {
+                                    console.log(error);
+                                });
+                            }
+                        });
+                    }
+                },
+                eventDrop: function (info) {
+                    var obj = new Object();
+                    obj.start = info.event.start;
+                    obj.end = info.event.end;
+                    obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                    firebase.firestore().collection("event_activity").doc(info.event.id).update(obj).then(function (thisDoc) {
+
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                eventResize: function (info) {
+                    var obj = new Object();
+                    obj.end = info.event.end;
+                    obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                    firebase.firestore().collection("event_activity").doc(info.event.id).update(obj).then(function (thisDoc) {
+
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            });
+            obj.start = moment(obj.start).format("YYYY-MM-DD")
+            obj.end = moment(obj.end).format("YYYY-MM-DD")
+            addevent_timegrid(obj);
+            act_calendar.render();
+        }
+
+        function addevent_timegrid(obj) {
+            act_calendar.addEventSource([
+                {
+                    id: obj.id,
+                    title: obj.title,
+                    start: obj.start,
+                    end: obj.end,
+                    editable: obj.editable != null ? obj.editable : false,
+                    allDay: obj.allDay != null ? obj.allDay : true
+                }
+            ]);
+        }
+
+        function showactivity(id, start, end) {
+            if (act_viewonly) act_viewonly.destroy();
+            $("#actModal").fadeIn('slow').modal("show");
+            var eventid = id;
+            var dur = ((((end - start) / 1000) / 60) / 60) / 24;
+            act_viewonly = new FullCalendar.Calendar(calendarE3, {
+                plugins: ['timeGrid'],
+                defaultView: 'timeGridDay',
+                header: {
+                    left: '',
+                    center: 'title',
+                    right: ''
+                },
+                views: {
+                    timeGridDay: {
+                        type: 'timeGrid',
+                        duration: { days: dur }
+                    }
+                },
+                defaultDate: moment(start).format("YYYY-MM-DD"),
+            });
+            act_viewonly.render();
+
+            firebase.firestore().collection("event_activity").where("eventid", "==", eventid).get().then(function (activitycol) {
+                activitycol.forEach(function (activitydoc) {
+                    var obj = new Object();
+                    obj.id = activitydoc.id;
+                    obj.title = activitydoc.data().title;
+                    obj.start = moment.unix(activitydoc.data().start.seconds).format("YYYY-MM-DD HH:mm:ss");
+                    obj.end = moment.unix(activitydoc.data().end.seconds).format("YYYY-MM-DD HH:mm:ss");
+                    obj.allDay = false;
+                    obj.editable = false;
+                    act_viewonly.addEventSource([
+                        {
+                            id: obj.id,
+                            title: obj.title,
+                            start: obj.start,
+                            end: obj.end,
+                            editable: obj.editable != null ? obj.editable : false,
+                            allDay: obj.allDay != null ? obj.allDay : true
+                        }
+                    ]);
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function retrieve_weather(location) {
+            $("#eventcity").val(location);
+            $("#eventcity_cl").html(location);
+            $("#weatherlocation").html(location);
+            var db = firebase.firestore().collection("weather");
+            db = db.where("location", "==", location);
+            db.onSnapshot(function (snapshot) {
+                snapshot.docChanges().forEach(function (change) {
+                    if (change.type !== "removed") {
+                        var obj = new Object();
+                        obj.id = change.doc.data().date;
+                        obj.title = change.doc.data().code;
+                        obj.extendedProps = {
+                            'code': change.doc.data().code,
+                            'w_day': change.doc.data().w_day
+                        }
+                        obj.start = change.doc.data().date;
+                        obj.end = change.doc.data().date;
+                        obj.rendering = 'background';
+                        arr.push(obj);
+                        var weatherback = calendar.getEventById(obj.id);
+                        if (weatherback) weatherback.remove();
+                        calendar.addEventSource(arr);
+                        arr = [];
+                    }
+                });
+            });
+        }
+
+        function resetcreateEvent() {
+            readURL($("#eventpic"));
+            $('.wizard-card form').trigger("reset");
+            $('.wizard-card a[href="#about"]').tab('show');
+            $('.wizard-card .nav-pills li:not(:first-child)').removeClass('active');
+            $('.wizard-card .nav-pills li a .icon-circle').removeClass('checked');
+            $("#eventcreated").val("");
+            $("#edit-panel .new-node").val("");
+            $("#selected-node").val("");
+            $("#chart-container").html("");
+            $('input[name="node-type"]').prop('checked', false);
+            var cld = calendar.getEventById(eventidcreated);
+            if (act_calendar) act_calendar.destroy();
+            if (cld) cld.remove();
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Events</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <!-- Custom fonts for this website-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Plugin styles for this website-->
+    <link href="vendor/rotating-card/rotating-card.css" rel="stylesheet">
+    <link rel="stylesheet" href="vendor/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendor/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="vendor/fullcalendar/core/main.css" />
+    <link rel="stylesheet" href="vendor/fullcalendar/timegrid/main.css" />
+
+    <!-- Custom styles for this website-->
+    <link href="css/utar2share.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container">
+            <img src="images/logo.png" height="45" width="70" alt="UTAR 2SHARE"></a>
+            <span class="navbar-brand js-scroll-trigger">UTAR 2SHARE</span>
+            <button class="navbar-toggler navbar-toggler-right btn btn-link rounded-circle" type="button"
+                data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="post.html">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="event.html">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="forum.html">Forum</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="usernamebar"></span>
+                            <img class="img-profile rounded-circle" id="userprofilepic">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#qrCodeModal"
+                                onclick="qrcode_GE()">
+                                <i class="fas fa-qrcode fa-sm fa-fw mr-2 text-gray-400"></i>
+                                QR Code
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <!-- End of Topbar -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Begin Page Content -->
+    <section>
+        <div class="container container-lg-fluid">
+            <div class="row">
+                <div class="col-sm-2 col-12 text-center">
+                    <!-- Sidebar -->
+                    <ul class="navbar-nav sidebar accordion navbar-sm-hoz sticky-top">
+
+                        <!-- Nav Item - Events -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event.html">
+                                <i class="far fa-calendar-plus"></i>
+                                <span>Events</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_discover.html">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>Discover</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_history.html">
+                                <i class="fas fa-history"></i>
+                                <span>History</span></a>
+                        </li>
+
+                        <!-- Nav Item -  -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="event_insight.html">
+                                <i class="fas fa-person-booth"></i>
+                                <span>Insights</span></a>
+                        </li>
+
+                    </ul>
+                    <!-- End of Sidebar -->
+                </div>
+
+                <div class="col-sm-10 col-12">
+                    <div class="card-main shadow mb-4">
+                        <div class="card-header py-3 d-flex bd-highlight align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary bd-highlight">Joined Events</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="owl-carousel" id="joined_eventdata_row">
+                            </div> <!-- end row -->
+                        </div>
+                    </div>
+                    <div class="card-main shadow mb-4">
+                        <div class="card-header py-3 d-flex bd-highlight align-items-center">
+                            <h6 class="m-0 font-weight-bold text-primary bd-highlight">Upcoming Events</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" id="eventdata_row">
+                            </div> <!-- end row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; UTAR 2SHARE. All Rights Reserved.</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+
+    <a class="scroll-to-top rounded-circle" href="#">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary" type="button" id="SignOut">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal-->
+    <div class="modal fade" id="qrCodeModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My QR Code</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="QRcode_preview" class="container-fluid"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Modal-->
+    <div class="modal" id="actModal" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Activity</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id='activities_calendar'></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <!-- Js / Jquery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Firebase login-->
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase.js"></script>
+    <script src="js/AccountFirebase.js"></script>
+
+    <!-- FullCalendar plugin -->
+    <script src="vendor/fullcalendar/core/main.js"></script>
+    <script src="vendor/fullcalendar/daygrid/main.js"></script>
+    <script src="vendor/fullcalendar/timegrid/main.js"></script>
+
+    <!-- jQuery Pull to Refresh plugin -->
+    <script src='vendor/pulltorefresh/jquery.p2r.min.js' type='text/javascript' defer></script>
+
+    <!-- QR Code Generator -->
+    <script src="vendor/QRCode/jquery-qrcode.min.js"></script>
+
+    <!-- Owl Carousel -->
+    <script src="vendor/owlcarousel/owl.carousel.min.js"></script>
+    <script src="vendor/owlcarousel/jquery.mousewheel.min.js"></script>
+    <script src="vendor/owlcarousel/owl.autoplay.js"></script>
+
+    <!-- Custome JS -->
+    <script src="js/utar2share.js"></script>
+    <script src="js/bootstrap-dialog.min.js"></script>
+
+    <script>
+
+        var no = 0;
+        var owl = $('.owl-carousel');
+        var event_arr = {};
+        var act_calendar;
+        var calendarE2 = document.getElementById('activities_calendar');
+
+        $(function () {//onload
+
+            owl.owlCarousel({
+                animateOut: 'fadeOut',
+                loop: false,
+                nav: false,
+                margin: 10,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 4000,
+                autoplayHoverPause: true,
+                smartSpeed: 2000,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 1
+                    },
+                    992: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 3
+                    }
+                }
+            });
+
+            owl.on('mousewheel', '.owl-stage', function (e) {
+                if (e.deltaY > 0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
+            });
+
+            $("#joined_eventdata_row").append('<div class="col-12" id="joined_norecord"><div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">Please Wait, Loading...</div></div></div>');
+            $("#eventdata_row").html('<div class="col-12" id="norecord"><div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">Please Wait, Loading...</div></div></div>');
+
+            initApp().then(function (user) {
+                get_events(user);
+            });
+
+        });
+
+        function get_events(user) {
+            var displaydate = new Date();
+            displaydate.setDate(displaydate.getDate() + 1);
+
+            var db = firebase.firestore().collection("event");
+            //db = db.where("status", "==", 1);
+            db = db.where("end", ">", displaydate);
+            db = db.orderBy("end", "asc");
+            db = db.orderBy("start", "asc");
+            db.onSnapshot(function (snapshot) {
+                if (!snapshot.empty) {
+                    snapshot.docChanges().forEach(function (change) {
+                        if (change.type !== "removed") {
+                            event_arr[change.doc.id] = change.doc.data().status;
+                            if (change.doc.data().creatorid != firebase.auth().currentUser.uid) {
+                                var wdb = firebase.firestore().collection("weather");
+                                wdb = wdb.where("location", "==", change.doc.data().city);
+                                wdb = wdb.where("date", "==", moment.unix(change.doc.data().start.seconds).format("YYYY-MM-DD"));
+                                wdb.onSnapshot(function (wsnapshot) {
+                                    var wcode = 44;
+                                    if (!wsnapshot.empty) {
+                                        wsnapshot.docChanges().forEach(function (thisdoc) {
+                                            wcode = thisdoc.doc.data().code;
+                                        });
+                                    }
+
+                                    var docRef = firebase.firestore().collection("event_participants");
+                                    docRef = firebase.firestore().collection("event_participants");
+                                    docRef = docRef.where("eid", "==", change.doc.id);
+                                    docRef = docRef.where("uid", "==", firebase.auth().currentUser.uid);
+                                    docRef.onSnapshot(function (querySnapshot) {
+                                        if ($("#norecord")) $("#norecord").remove();
+                                        if (!querySnapshot.empty) {
+                                            if ($("#joined_norecord")) $("#joined_norecord").remove();
+                                            querySnapshot.docChanges().forEach(function (doc) {
+                                                if (event_arr[change.doc.id] != 1 && doc.doc.data().status != 0) {
+                                                    $.dialog.alert('Event Cancelled or Deleted', 'Event : ' + change.doc.data().title + ' , Time: ' + moment.unix(change.doc.data().start.seconds).format("YYYY-MM-DD") + ' . You will leave this event soon. <br/> To view past event please refer to history page.', function () {
+                                                        unjoinEvent(doc.doc.id, change.doc.id);
+                                                    });
+                                                } else if (event_arr[change.doc.id] == 1) {
+                                                    if (doc.doc.data().status >= 1) {
+                                                        $("#" + change.doc.id + "_part").remove();
+                                                        get_joined_eventData(change, doc.doc, wcode);
+                                                    } else {
+                                                        $("#" + change.doc.id + "_join").remove();
+                                                        get_eventData(change, wcode);
+                                                    }
+                                                    for (var i = 0; i < $('.owl-item').length; i++) {
+                                                        if ($('.owl-item:nth-child(' + (i + 1) + ')').is(":empty")) {
+                                                            owl.trigger('remove.owl.carousel', [i]).trigger('refresh.owl.carousel');
+                                                        }
+                                                    }
+                                                } else {
+                                                    $("#" + change.doc.id + "_part").remove();
+                                                    $("#" + change.doc.id + "_join").remove();
+                                                }
+                                                if (no <= 0 && !$('#joined_norecord').html()) $("#joined_eventdata_row").append('<div class="col-12" id="joined_norecord"><div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div></div>');
+                                                if ($('#eventdata_row').is(':empty')) $("#eventdata_row").html('<div class="col-12" id="norecord"><div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div></div>');
+                                            });
+                                        } else {
+                                            if (change.doc.data().status == 1) get_eventData(change, wcode);
+                                            $("#joined_norecord").html('<div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                                        }
+                                    });
+                                });
+                            } else {
+                                if ($("#norecord")) $("#norecord").html('<div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                                if ($("#joined_norecord")) $("#joined_norecord").html('<div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                            }
+                        } else {
+                            var id = "#" + change.doc.id + "_join";
+                            $(id).remove();
+                            var id = "#" + change.doc.id + "_part";
+                            $(id).remove();
+                        }
+                    });
+                } else {
+                    $("#joined_norecord").html('<div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                    $("#norecord").html('<div class="card-container d-inline-flex align-items-center justify-content-center"><div class="">No Record</div></div>');
+                }
+            });
+        }
+
+        function get_joined_eventData(change, doc, wcode) {
+            var data = "";
+            var photourl = change.doc.data().photourl;
+            var event_time = moment(change.doc.data().starttime, "HH:mm");
+            var eventdate = moment.unix(change.doc.data().start.seconds);
+            var buttonevent = "<div>";
+            if (doc.data().status == 1) buttonevent += '<a href="#" class="btn" title="Leave" onclick="unjoinEvent(\'' + doc.id + '\',\'' + change.doc.id + '\')"><i class="fas fa-sign-out-alt btn-danger btn-circle"></i><span class="pl-2 text"></span></a>';
+            else buttonevent += '<i class="far fa-hand-point-right btn-light btn-circle"></i><span class="pl-2 mr-3 text">Checked In</span>';
+            buttonevent += '<a href="#" class="btn btn-primary btn-circle" title="Show Activity" onclick="showactivity(\'' + change.doc.id + '\',' + moment.unix(change.doc.data().start.seconds) + ',' + moment.unix(change.doc.data().end.seconds) + ')"><i class="far fa-list-alt"></i></a>';
+            if (quotaexceed) photourl = "images/bg-sample.jpg";
+
+            if ($("#" + change.doc.id + "_join").length == 0) {
+                data += '<div class="event-item" id="' + change.doc.id + '_join"><div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div></div>';
+                //$("#joined_eventdata_row").append(data);
+                owl.trigger('add.owl.carousel', [data]).trigger('refresh.owl.carousel');
+                no++;
+            } else {
+                var id = "#" + change.doc.id + "_join";
+                data += '<div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div>';
+                $(id).html(data);
+            }
+        }
+
+        function get_eventData(change, wcode) {
+            var data = "";
+            var photourl = change.doc.data().photourl;
+            var event_time = moment(change.doc.data().starttime, "HH:mm");
+            var eventdate = moment.unix(change.doc.data().start.seconds);
+            var buttonevent = "";
+            buttonevent += '<a href="#" class="btn btn-warning btn-circle mr-3" title="Join" onclick="joinEvent(\'' + change.doc.id + '\')"><i class="far fa-hand-point-right"></i></a>';
+            buttonevent += '<a href="#" class="btn btn-primary btn-circle" title="Show Activity" onclick="showactivity(\'' + change.doc.id + '\',' + moment.unix(change.doc.data().start.seconds) + ',' + moment.unix(change.doc.data().end.seconds) + ')"><i class="far fa-list-alt"></i></a>';
+            if (quotaexceed) photourl = "images/bg-sample.jpg";
+
+            if ($("#" + change.doc.id + "_part").length == 0) {
+                data += '<div class="col-lg-6 col-md-12" id="' + change.doc.id + '_part"><div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div></div>';
+                $("#eventdata_row").append(data);
+            } else if (change.type === "modified") {
+                var id = "#" + change.doc.id + "_part";
+                data += '<div class="card-container"><div class="card"><div class="front">';
+                data += '<div class="cover" style="background:url(\'' + photourl + '\') center center / cover no-repeat;"></div>';
+                data += '<div class="content"><div class="main"><div class="row">';
+                data += '<div class="col-3 row m-0" style="background:linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)),url(images/weather/' + wcode + '.png) center center / contain no-repeat"><div class="col-12 name pt-2 pl-0 pr-0">' + eventdate.format("D") + '</div><div class="col-12 profession mb-0 pl-0 pr-0">' + eventdate.format("MMM") + '</div></div>';
+                data += '<div class="col-9"><h3 class="name text-left text-truncate">' + change.doc.data().title + '</h3><p class="text-left profession mb-0">' + change.doc.data().city + '</p><p class="text-left profession mb-1">' + change.doc.data().total_participant + ' ppl interested</p></div>';
+                data += '</div></div></div>';
+                data += '</div>';
+                data += '<div class="back">';
+                data += '<div class="cards-header"><h5 class="motto">Description</h5></div>';
+                data += '<div class="content"><div class="main">';
+                data += '<p class="text-gray-600 text-center text-capitalize card-content text-truncate">' + change.doc.data().desc + '</p>';
+                data += '<p class="text-center text-gray-800">' + change.doc.data().city + ' - ' + change.doc.data().location + '</p>';
+                data += '<div class="row text-center text-nowrap pt-3">';
+                data += '<div class="col-4 stats"><h4>' + eventdate.format("D") + '</h4><p>' + eventdate.format("MMM") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + event_time.format("h.mm") + '</h4><p>' + event_time.format("A") + '</p></div>';
+                data += '<div class="col-4 stats"><h4>' + change.doc.data().total_participant + '</h4><p>Interested</p></div>';
+                data += '</div>';
+                data += '</div></div>';
+                data += '<div class="cards-footer"><div class="text-center">';
+                data += buttonevent;
+                data += '</div></div>';
+                data += '</div>'
+                data += '</div></div>';
+                $(id).html(data);
+            }
+        }
+
+        function joinEvent(eid) {
+            var docRef = firebase.firestore().collection("event_participants");
+            var query = docRef.where("eid", "==", eid);
+            query = query.where("uid", "==", firebase.auth().currentUser.uid)
+            query.get().then(function (querySnapshot) {
+                if (querySnapshot.empty) {
+                    var obj = new Object();
+                    obj.eid = eid;
+                    obj.uid = firebase.auth().currentUser.uid;
+                    obj.feedback = "";
+                    obj.rate = 0;
+                    obj.insertDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                    obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                    obj.status = 1;
+                    docRef.add(obj);
+                    $.dialog.alert('Register Event', 'You are joined');
+                } else {
+                    querySnapshot.forEach(function (thisDoc) {
+                        if (thisDoc.data().status >= 1) {
+                            $.dialog.alert('Duplicated Entry', 'You already joined');
+                        } else {
+                            var obj = new Object();
+                            obj.status = 1;
+                            obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+                            docRef.doc(thisDoc.id).update(obj);
+                            $.dialog.alert('Register Event', 'You are joined');
+                        }
+                    });
+                }
+                firebase.firestore().collection("event").doc(eid).get().then(function (querysnap) {
+                    var total = querysnap.data().total_participant + 1;
+                    querysnap.ref.update({ 'total_participant': total })
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function unjoinEvent(pid, eid) {
+            var obj = new Object();
+            obj.status = 0;
+            obj.updateDateTime = firebase.firestore.FieldValue.serverTimestamp();
+            firebase.firestore().collection("event_participants").doc(pid).update(obj).then(function () {
+                $.dialog.alert('Leave Event', 'You leaved event');
+                --no;
+                firebase.firestore().collection("event").doc(eid).get().then(function (querysnap) {
+                    var total = querysnap.data().total_participant - 1;
+                    querysnap.ref.update({ 'total_participant': total })
+                });
+            });
+        }
+
+        function showactivity(id, start, end) {
+            if (act_calendar) act_calendar.destroy();
+            $("#actModal").fadeIn('slow').modal("show");
+            var eventid = id;
+            var dur = ((((end - start) / 1000) / 60) / 60) / 24;
+            act_calendar = new FullCalendar.Calendar(calendarE2, {
+                plugins: ['timeGrid'],
+                defaultView: 'timeGridDay',
+                header: {
+                    left: '',
+                    center: 'title',
+                    right: ''
+                },
+                views: {
+                    timeGridDay: {
+                        type: 'timeGrid',
+                        duration: { days: dur }
+                    }
+                },
+                defaultDate: moment(start).format("YYYY-MM-DD"),
+            });
+            act_calendar.render();
+
+            firebase.firestore().collection("event_activity").where("eventid", "==", eventid).get().then(function (activitycol) {
+                activitycol.forEach(function (activitydoc) {
+                    var obj = new Object();
+                    obj.id = activitydoc.id;
+                    obj.title = activitydoc.data().title;
+                    obj.start = moment.unix(activitydoc.data().start.seconds).format("YYYY-MM-DD HH:mm:ss");
+                    obj.end = moment.unix(activitydoc.data().end.seconds).format("YYYY-MM-DD HH:mm:ss");
+                    obj.allDay = false;
+                    obj.editable = false;
+                    addevent_timegrid(obj);
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+
+        function addevent_timegrid(obj) {
+            act_calendar.addEventSource([
+                {
+                    id: obj.id,
+                    title: obj.title,
+                    start: obj.start,
+                    end: obj.end,
+                    editable: obj.editable != null ? obj.editable : false,
+                    allDay: obj.allDay != null ? obj.allDay : true
+                }
+            ]);
+        }
+
+    </script>
+
+</body>
+
+</html>

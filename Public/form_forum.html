@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>My Forum</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/general.css">
+</head>
+
+<body class="container">
+
+
+
+
+
+    <div id="results"> </div>
+
+
+
+
+    <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  bd-example-modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="t_Title">Modal title = NA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <p>
+                        <font size="1" color="#8E44AD" id="t_userName">userName = NA</font>
+
+                        <font size="1" color="#FF9B37" font size="1" color="#FF9B37" id="t_CreatedDateTime">Datetime =
+                            NA
+                        </font>
+                    </p>
+
+                    <p id="t_Desc">Desc = NA</p>
+                    </br>
+                    <div id="results_Reply"> </div>
+                    </br>
+
+                    <textarea id="comment_Reply" class="form-control" aria-label="With textarea"
+                        placeholder="Your Comment here.." style="width: 300px"></textarea>
+
+                </div>
+                <div class="modal-footer">
+
+
+
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="SubmitComment" class="btn btn-primary" data-dismiss="modal">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <br>
+    <H3>New TOPIC</H3>
+    <div>
+        <div class="card " style="width: 77rem">
+            <div class=" card-body">
+                <div>
+                    <button type="button" class="btn btn-outline-primary dropdown-toggle btn-sm" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Discuss </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#">SHARE</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">POLL</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">REVIEW</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="#">ETC</a>
+                        </li>
+                    </ul>
+                </div>
+                <input id="f_Title" type="text" placeholder="Title..." style="width: 300px">
+            </div>
+
+
+            <div class="input-group">
+                <textarea id="f_Content" class="form-control" placeholder="Contents..."
+                    aria-label="With textarea"></textarea>
+            </div>
+            <button type="button" id="CREATE_NewPOST" class="btn btn-secondary btn-sm">SUBMIT</button>
+        </div>
+    </div>
+
+
+
+
+    <br />
+    <br />
+
+
+    <!-- <button class="btn btn-indigo" id="CREATE_TEST" type="button">CREATE_TEST</button> -->
+    <!-- <button class="btn btn-indigo" id="test" type="button">test</button> -->
+
+
+
+
+
+
+
+    <!-- _______________________________________________________________________________________ Js code  -->
+
+    <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript">
+        new WOW().init();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase.js"></script>
+    <script src="js/AccountFirebase.js"></script>
+
+    <script>
+        var file;
+        let t_type_Text = '';
+
+        $(function () { //onload
+
+            initApp();
+
+
+
+            $("#txtName").focus();
+
+
+            $("#errorMessage").hide();
+            $("#divProfile").hide();
+
+
+            // Create
+            $("#CREATE_TEST").click(function (e) {
+                firebase.auth().onAuthStateChanged(function (user) {
+
+                    var db = firebase.firestore();
+
+                    db.collection("Forum_Thread2")
+                        .add({
+                            t_UUID: uuidv4(),
+                            t_Host_Uid: user.uid,
+                            t_type: "t_type",
+                            t_Title: "How to ..",
+                            t_Desc: "this is....",
+                            t_CreatedDateTime: "2019-10-08",
+                        })
+                        .then(refDoc => {
+                            alert(`Added `)
+                        })
+
+
+                });
+            });
+
+            // Retrive 
+            $("#RETRIVE_TEST").click(function (e) {
+
+                firebase.auth().onAuthStateChanged(function (user) {
+
+                    var db = firebase.firestore();
+
+                    // SELECT
+                    db.collection("Users").where("Uid", "==", user.uid).onSnapshot(function (snapshot) {
+                        snapshot.docChanges().forEach(function (SELECT) {
+
+                            console.log("# SELECT.doc.data().Uid  \n= " + SELECT.doc.data().Uid);
+                            console.log("# SELECT.doc.data().DisplayName \n= " + SELECT.doc.data().DisplayName);
+                            console.log("# SELECT.doc.data().BirthDate \n= " + SELECT.doc.data().BirthDate);
+
+                        });
+                    });
+                });
+            });
+
+
+            // Update
+            $("#UPDATE_TEST").click(function (e) {
+                console.log("UPDATE_TEST - Clicked!");
+                firebase.auth().onAuthStateChanged(function (user) {
+
+                    var db = firebase.firestore();
+
+
+                    var obj = new Object();
+                    obj.fid = uuidv4();
+                    obj.Uid = "s.." + firebase.auth().currentUser.uid;
+                    obj.DisplayName = "sss";
+                    obj.Photo = "xxx1";
+                    obj.BirthDate = "2019-11-11";
+                    obj.UpdatedDateTime = firebase.firestore.FieldValue.serverTimestamp();
+
+                    db.collection("Users").doc('csPYVRNEHfoY5n2oaQHw').set(obj).then(function () {
+
+                    })
+                });
+            });
+
+            // Delete
+            // ref = https://firebase.google.com/docs/firestore/manage-data/delete-data
+            $("#DELETE_TEST").click(function (e) {
+                console.log("DELETE_TEST- Clicked!");
+
+                var db = firebase.firestore();
+
+                db.collection("Users").doc("nNWqQkNxgXTAge7aiu15").delete().then(function () {
+                    console.log("Document successfully deleted!");
+                }).catch(function (error) {
+                    console.error("Error removing document: ", error);
+                });
+            });
+
+
+
+
+
+            $("#SignOut").click(function (e) {
+                firebase.auth().signOut();
+            });
+
+            $("#test").click(function (e) {
+                var db = firebase.firestore();
+
+                // SELECT - Search
+                db.collection("Forum_Thread").where("t_UUID", "==", "0f534d74-b31c-4121-9c21-f7575c072721").onSnapshot(function (snapshot) {
+                    snapshot.docChanges().forEach(function (SELECT) {
+
+                        $("#t_Title").html(SELECT.doc.data().t_Title)
+                        $("#t_Desc").html(SELECT.doc.data().t_Desc)
+
+
+
+                        // if (SELECT.type === "added") { //Get realtime new added data  with Cloud Firestore
+
+                        //     if (SELECT.doc.data().DisplayName != null) {
+                        //         $("#FullName").html("Welcome " + SELECT.doc.data().DisplayName);
+                        //         $("#txtName").val(SELECT.doc.data().DisplayName);
+                        //     }
+
+                        //     if (SELECT.doc.data().BirthDate != null) {
+
+                        //         $("#txtBirthdate").val(SELECT.doc.data().BirthDate);
+                        //     }
+
+                        //     if (SELECT.doc.data().Photo != null) {
+                        //         $("#divProfile").show();
+
+                        //         $("#profile").attr("src", SELECT.doc.data().Photo);
+                        //     }
+
+
+                        // }
+
+                    });
+                });
+            });
+
+
+
+            $("#SubmitComment").click(function (e) {
+
+                firebase.auth().onAuthStateChanged(function (user) {
+
+                    var db = firebase.firestore();
+
+                    db.collection("Forum_Thread_Comment")
+                        .add({
+                            t_UUID: current_t_UUID,
+                            t_userName: current_t_userName,
+                            t_Desc: $("#comment_Reply").val(),
+                            t_CreatedDateTime: firebase.firestore.FieldValue.serverTimestamp(),
+                        })
+                        .then(refDoc => {
+                            alert(`Added `)
+                            // Reset the value
+                            // $("#f_Title").val("");
+                            // $("#f_Content").val("");
+                            $("#comment_Reply").val("");
+                        })
+                });
+
+            });
+
+
+            // Create
+            $("#CREATE_NewPOST").click(function (e) {
+                firebase.auth().onAuthStateChanged(function (user) {
+
+                    var db = firebase.firestore();
+
+                    db.collection("Forum_Thread")
+                        .add({
+                            t_UUID: uuidv4(),
+                            t_Host_Uid: user.uid,
+                            t_userName: userName,
+                            t_type: t_type_Text,
+                            t_Title: $("#f_Title").val(),
+                            t_Desc: $("#f_Content").val(),
+                            t_CreatedDateTime: firebase.firestore.FieldValue.serverTimestamp(),
+                        })
+                        .then(refDoc => {
+                            alert(`Added `)
+                            // Reset the value
+                            $("#f_Title").val("");
+                            $("#f_Content").val("");
+                        })
+                });
+
+
+            });
+
+
+
+
+            // get the infor from download menu
+            $(function () {
+                $(".dropdown-menu li a").click(function () {
+                    $(".btn:first-child").text($(this).text());
+                    // $(".btn:first-child").val($(this).text());
+                    t_type_Text = $(this).text()
+                    console.log(t_type_Text);
+                });
+            });
+
+
+            // gen UUID 
+            function uuidv4() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = Math.random() * 16 | 0,
+                        v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+
+
+
+            $(document.body).on('click', '.btn-update', function (e) { //btn-update class bind click event
+
+                current_t_UUID = $(this).data('id');
+
+                console.log('x ' + current_t_UUID);
+                // $("#City").val($(this).data('name'));//pointer to get the value from html element data-* attribute 
+                // $("#Population").val($(this).data('population'));//pointer to get the value from html element data-* attribute 
+                // $("#cityId").val($(this).data('id'));//pointer to get the value from html element data-* attribute 
+
+
+
+                var db = firebase.firestore();
+
+                // SELECT - Search
+                db.collection("Forum_Thread").where("t_UUID", "==", current_t_UUID).onSnapshot(function (snapshot) {
+                    snapshot.docChanges().forEach(function (SELECT) {
+
+                        $("#t_Title").html(SELECT.doc.data().t_Title)
+                        $("#t_userName").html(SELECT.doc.data().t_userName)
+                        $("#t_CreatedDateTime").html(new Date(SELECT.doc.data().t_CreatedDateTime.seconds * 1000).toString().substr(0, 33))
+                        $("#t_Desc").html(SELECT.doc.data().t_Desc)
+
+
+                    });
+                });
+
+
+
+                var db = firebase.firestore(); //API firestore database
+
+                // Reset value
+
+                $("#results_Reply").html('');
+                console.log("x : " + $("#results_Reply").val());
+
+                //get data from cities table where created by current login user
+                db.collection("Forum_Thread_Comment").where("t_UUID", "==", current_t_UUID).onSnapshot(function (snapshot) {
+
+
+                    snapshot.docChanges().forEach(function (change) {
+
+
+                        if (change.type === "added") { //Get realtime new added data  with Cloud Firestore
+
+
+                            // console.log(new Date(change.doc.data().t_CreatedDateTime.seconds * 1000).toString().substr(0, 33))
+
+                            $("#results_Reply").append(
+                                `
+                   
+                        <div class="card" > 
+                            <div class="card-body">
+                                <tr>
+                                <p><font size="1" color="#8E44AD"> ${change.doc.data().t_userName}<font size="1" color="#8E44AD">  <font size="1" color="#FF9B37">   ${new Date(change.doc.data().t_CreatedDateTime.seconds * 1000).toString().substr(0, 33)} </p>  
+                                <p class="card-text">${change.doc.data().t_Desc}</p>
+                                <th></th>
+                                </tr>
+                               
+
+                               
+                            </div>
+                        </div>
+                        <br> 
+
+
+
+
+                    `);
+
+
+                        }
+
+
+                    });
+
+
+                });
+
+            });
+
+
+
+
+
+
+
+        });
+
+        let current_t_UUID = '';
+        let current_t_userName = "";
+
+
+        function initApp() {
+
+
+            t_type_Text = 'DISCUSS';
+            console.log("initApp()");
+
+
+            // User Login Status - from cookies
+            firebase.auth().onAuthStateChanged(function (user) {
+
+                if (user == null)
+                    window.location.href = "Login.html";
+                else {
+                    var db = firebase.firestore();
+
+                    // SELECT
+                    db.collection("Users").where("Uid", "==", user.uid).onSnapshot(function (snapshot) {
+                        snapshot.docChanges().forEach(function (SELECT) {
+                            if (SELECT.type === "added") { //Get realtime new added data  with Cloud Firestore
+
+                                if (SELECT.doc.data().DisplayName != null) {
+                                    $("#FullName").html("Welcome " + SELECT.doc.data().DisplayName);
+                                    $("#txtName").val(SELECT.doc.data().DisplayName);
+                                    // console.log(SELECT.doc.data().DisplayName);
+                                    current_t_userName = SELECT.doc.data().DisplayName;
+                                    console.log("userName = " + current_t_userName);
+
+                                }
+
+                                if (SELECT.doc.data().BirthDate != null) {
+
+                                    $("#txtBirthdate").val(SELECT.doc.data().BirthDate);
+                                }
+
+                                if (SELECT.doc.data().Photo != null) {
+                                    $("#divProfile").show();
+
+                                    $("#profile").attr("src", SELECT.doc.data().Photo);
+                                }
+
+
+                            }
+
+                        });
+                    });
+
+                }
+
+
+
+
+                var db = firebase.firestore(); //API firestore database
+
+                // // SELECT
+                // db.collection("Users").where("Uid", "==", user.uid).onSnapshot(function (snapshot) {
+                //     snapshot.docChanges().forEach(function (SELECT) {
+
+                //         console.log("# SELECT.doc.data().Uid  \n= " + SELECT.doc.data().Uid);
+                //         console.log("# SELECT.doc.data().DisplayName \n= " + SELECT.doc.data().DisplayName);
+                //         console.log("# SELECT.doc.data().BirthDate \n= " + SELECT.doc.data().BirthDate);
+
+                //     });
+                // });
+
+
+                //get data from cities table where created by current login user
+                db.collection("Forum_Thread").onSnapshot(function (snapshot) {
+
+
+                    snapshot.docChanges().forEach(function (change) {
+
+
+                        if (change.type === "added") { //Get realtime new added data  with Cloud Firestore
+
+
+                            // console.log(new Date(change.doc.data().t_CreatedDateTime.seconds * 1000).toString().substr(0, 33))
+
+                            $("#results").append(
+                                `
+                                   
+                                        <div class="card" style="width: 77rem;"> 
+                                            <div class="card-body">
+                                                <tr>
+                                                <th><span class="badge badge-${change.doc.data().t_type === 'ETC' ? 'secondary' : change.doc.data().t_type === 'POLL' ? 'success' : change.doc.data().t_type === 'DISCUSS' ? 'warning' : change.doc.data().t_type === 'REVIEW' ? 'info' : change.doc.data().t_type === 'SHARE' ? 'primary' : ''}"><font size="1">${change.doc.data().t_type}</font></span></th> 
+                                                <th><span class="badge badge-light"><font size="2">${change.doc.data().t_Title}</font></span></th>   
+                                                <p><font size="1" color="#8E44AD"> ${change.doc.data().t_userName}<font size="1" color="#8E44AD">  <font size="1" color="#FF9B37">   ${new Date(change.doc.data().t_CreatedDateTime.seconds * 1000).toString().substr(0, 33)} </p>  
+                                                <p class="card-text">${change.doc.data().t_Desc.substring(0, 100) + "..."}</p>
+                                                <th> </th>
+                                                </tr>
+                                               
+
+                                               
+                                                <div align="right"><font size="1" color="#E5E4E2"> ${change.doc.data().t_UUID} </font><button data-id='${change.doc.data().t_UUID}' type="button" class="btn-update btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Comment</button> </div>
+                                         
+                                                
+                                            </div>
+                                        </div>
+                                        <br> 
+ 
+   
+  
+ 
+                                    `);
+
+
+                        }
+
+
+                    });
+
+
+                });
+
+            });
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+* {
+	box-sizing: border-box;
+}
+
+div, section {
+	border-radius: 5px;
+}
+
+body {
+	display: flex;
+	margin: 0;
+}
+
+section {
+	height: 100vh;
+}
+
+#left {
+	width: 20vw;
+	background-color: #e9ebee;
+	display: flex;
+	flex-direction: column;
+}
+
+#logo {
+	margin: 13%;
+	margin-left: 20%;
+	height: 10%;
+	width: 50%;
+}
+
+#functions {
+	display: flex;
+	flex-direction: column;
+	padding: 17%;
+	padding-bottom: 0;
+	flex-grow: 1;
+}
+
+#functions > div {
+	padding: 15px;
+	background-color: white;
+}
+
+#filter-box {
+	
+	border-bottom: 1px solid #dddfe2;
+}
+
+#redirect-buttons {
+	flex-grow: 1;
+	height: 100%;
+}
+
+#right {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	background-color: #e9ebee;
+	align-items: center;
+}
+
+#right > div {
+	width: 90%;
+}
+
+#menu-bar {
+	margin-top: 4%;
+	margin-bottom: 5%;
+	min-height: 15%;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+}
+
+#menu-bar > form {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#menu-bar > form > div {
+	height: 3rem;
+	display: flex;
+	align-items: center;
+}
+
+#menu-bar > form img {
+	height: 100%;
+	border-radius: 50%;
+}
+
+#menu-bar > form textarea {
+	border-radius: 5px;
+	outline: none;
+	font-size: 3rem;
+}
+
+#menu-bar > div {
+	display: flex;
+	justify-content: center;
+}
+
+#posts-box {
+	flex-grow: 1;
+	margin-bottom: 5%;
+	overflow-y: scroll;
+}
+
+#posts-box::-webkit-scrollbar {
+	width: 0px;
+	background: transparent;
+}
+
+#posts-box > img {
+	display: block;
+	margin: auto;
+}
+
+.post {
+	border: 1px solid #dddfe2;
+	background-color: white;
+	margin-bottom: 5%;
+	padding: 2%;
+}
+
+.post-header {
+	height: 1rem;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.post-header > img {
+	height: 100%;
+	border-radius: 50%;
+}
+
+.post-header > a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #385898;
+}
+
+.post-controls {
+	width: 50%;
+	margin: auto;
+	padding-top: 5px;
+	display: flex;
+}
+
+.post-controls > button {
+	width: 100;
+	outline: blue;
+	border: none;
+	border-radius: 5px;
+}
+
+.post-comment-form > form {
+	margin-top: 5px;
+	display: flex;
+	justify-content: center;
+}
