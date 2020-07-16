@@ -6,6 +6,6 @@ Develop an online event management system that includes features that enables st
 ![](images/homepage.PNG)
 
 
-![](images/org chart.PNG)
+![](images/org_chart.PNG)
 
 Demo Link : https://miniproject-ca058.web.app/
